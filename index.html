@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janan &amp; Juan — Wedding Production Book</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+  :root{
+    --cream: #f6f1e7;
+    --cream-deep: #efe7d6;
+    --ink: #2b2420;
+    --ink-soft: #4a4038;
+    --clay: #b9714a;
+    --clay-soft: #cf9370;
+    --gold: #b99a5b;
+    --sage: #7c8265;
+    --rule: rgba(43,36,32,0.16);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html,body{
+    margin:0;
+    padding:0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'EB Garamond', serif;
+  }
+
+  body.locked{ overflow:hidden; height:100vh; }
+  body.locked #site{ display:none; }
+
+  /* ---------- Password gate ---------- */
+  .gate{
+    position:fixed; inset:0; z-index:100;
+    background: var(--cream);
+    display:flex; align-items:center; justify-content:center;
+    padding: 24px;
+  }
+  .gate.hidden{ display:none; }
+  .gate-card{
+    max-width: 380px; width:100%;
+    text-align:center;
+    padding: 44px 32px;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    background: var(--cream-deep);
+  }
+  .gate-card .eyebrow{
+    letter-spacing: 0.32em; text-transform: uppercase; font-size: 11px;
+    color: var(--clay); margin-bottom: 14px;
+  }
+  .gate-card h1{
+    font-family: 'Cormorant Garamond', serif; font-weight:500; font-size:34px;
+    margin: 0 0 6px; line-height:1;
+  }
+  .gate-card h1 .amp{ font-style:italic; color:var(--clay); padding:0 4px; }
+  .gate-card p.sub{
+    font-size:14px; color:var(--ink-soft); font-style:italic; margin: 6px 0 26px;
+  }
+  .gate-card input[type="password"]{
+    width:100%; padding: 12px 14px; font-family:'EB Garamond', serif; font-size:16px;
+    border: 1px solid var(--rule); border-radius:4px; background:var(--cream);
+    color:var(--ink); text-align:center; letter-spacing:0.04em;
+  }
+  .gate-card input[type="password"]:focus{ outline: 1.5px solid var(--clay); }
+  .gate-card button{
+    margin-top:14px; width:100%; padding:12px 14px;
+    background: var(--clay); color: var(--cream); border:none; border-radius:4px;
+    font-family:'EB Garamond', serif; font-size:14px; letter-spacing:0.08em; text-transform:uppercase;
+    cursor:pointer; transition: background 0.15s ease;
+  }
+  .gate-card button:hover{ background: var(--clay-soft); }
+  .gate-error{
+    margin-top:12px; font-size:13px; color:var(--clay); min-height:16px;
+  }
+
+  /* ---------- Top masthead ---------- */
+  .masthead{
+    text-align:center;
+    padding: 52px 24px 28px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead .eyebrow{
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    font-size: 11px;
+    color: var(--clay);
+    margin-bottom: 14px;
+  }
+  .masthead h1{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 46px;
+    margin: 0 0 6px;
+    line-height: 1;
+  }
+  .masthead h1 .amp{ font-style: italic; color: var(--clay); padding: 0 4px; }
+  .masthead .doctitle{
+    font-family: 'EB Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin-bottom: 10px;
+  }
+  .masthead .meta{
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+  }
+
+  /* ---------- Sticky section nav ---------- */
+  .nav{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(246,241,231,0.96);
+    backdrop-filter: blur(4px);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    overflow-x: auto;
+    gap: 4px;
+    padding: 10px 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav a{
+    flex-shrink:0;
+    text-decoration:none;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+  .nav a:hover, .nav a.active{
+    background: var(--clay);
+    color: var(--cream);
+    border-color: var(--clay);
+  }
+
+  .wrap{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 40px 28px 100px;
+  }
+
+  /* ---------- Section card ---------- */
+  .section{
+    margin-top: 64px;
+    scroll-margin-top: 64px;
+  }
+  .section:first-child{ margin-top: 20px; }
+
+  .section-head{
+    margin-bottom: 22px;
+  }
+  .section-head h2{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 36px;
+    color: var(--clay);
+    margin: 0 0 6px;
+    border-bottom: 2px solid var(--clay-soft);
+    padding-bottom: 10px;
+  }
+  .section-head .time{
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .block{
+    margin-top: 26px;
+  }
+  .block h3{
+    font-family: 'EB Garamond', serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .block p{ margin: 0; font-size: 16px; line-height: 1.5; }
+
+  ul.plain{
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  ul.plain li{
+    font-size: 16px;
+    padding: 6px 0 6px 20px;
+    position: relative;
+    line-height: 1.4;
+  }
+  ul.plain li::before{
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  .timeline-row{
+    display:grid;
+    grid-template-columns: 96px 1fr;
+    gap: 16px;
+    padding: 7px 0;
+    align-items: baseline;
+  }
+  .timeline-row .t{
+    font-family:'Cormorant Garamond', serif;
+    color: var(--clay);
+    font-weight: 600;
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  .timeline-row .e{ font-size: 16px; }
+
+  .vendor{
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    background: var(--cream-deep);
+  }
+  .vendor .role{
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .vendor .line{
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Checklist (interactive, persisted) ---------- */
+  .checklist{ list-style:none; margin:0; padding:0; }
+  .checklist li{
+    display:flex;
+    align-items:flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .checklist li:last-child{ border-bottom:none; }
+  .checklist .box{
+    flex-shrink:0;
+    width: 18px; height: 18px;
+    margin-top: 2px;
+    border: 1.4px solid var(--clay);
+    border-radius: 3px;
+    display:flex; align-items:center; justify-content:center;
+    transition: background 0.15s ease;
+  }
+  .checklist .box svg{ width: 12px; height: 12px; opacity: 0; transition: opacity 0.12s ease; }
+  .checklist li.checked .box{ background: var(--clay); }
+  .checklist li.checked .box svg{ opacity: 1; }
+  .checklist li.checked .label{ color: var(--ink-soft); text-decoration: line-through; text-decoration-color: var(--rule); }
+
+  .notes-area{
+    width: 100%;
+    min-height: 90px;
+    resize: vertical;
+    border: 1px solid var(--rule);
+    background: var(--cream-deep);
+    border-radius: 4px;
+    padding: 12px 14px;
+    font-family: 'EB Garamond', serif;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .notes-area:focus{ outline: 1.5px solid var(--clay); }
+  .save-hint{
+    font-size: 11px;
+    color: var(--sage);
+    margin-top: 6px;
+    letter-spacing: 0.04em;
+  }
+
+  .footer{
+    text-align:center;
+    margin-top: 90px;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+
+  @media (max-width: 560px){
+    .masthead h1{ font-size: 36px; }
+    .timeline-row{ grid-template-columns: 78px 1fr; gap: 10px; }
+  }
+
+  /* ---------- Design inspiration gallery ---------- */
+  .gallery{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top: 14px;
+  }
+  .gallery figure{ margin:0; width: calc(33.333% - 7px); }
+  .gallery img{
+    width:100%; height:150px; object-fit:cover;
+    border-radius:4px; border:1px solid var(--rule); display:block;
+  }
+  .gallery figcaption{
+    font-size:11px; color:var(--ink-soft); margin-top:5px; line-height:1.35;
+  }
+  @media (max-width: 560px){
+    .gallery figure{ width: calc(50% - 5px); }
+  }
+
+  /* ---------- To Bring (couple) ---------- */
+  .tobring{
+    background: var(--cream-deep);
+    border-left: 3px solid var(--clay);
+    padding: 14px 16px;
+    border-radius: 3px;
+    margin-top: 16px;
+  }
+  .tobring .tag{
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--clay); font-weight: 700; margin-bottom: 8px;
+  }
+  .tobring ul{ margin:0; padding-left: 18px; }
+  .tobring li{ font-size: 14.5px; margin-bottom: 4px; line-height:1.4; }
+
+  /* ---------- Open question flags ---------- */
+  .openq{
+    background: rgba(185,113,74,0.08);
+    border: 1px dashed var(--clay-soft);
+    padding: 10px 14px;
+    border-radius: 3px;
+    margin-top: 12px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .openq .tag{
+    font-weight: 700; color: var(--clay); text-transform: uppercase;
+    letter-spacing: 0.1em; font-size: 10px; margin-right: 8px;
+  }
+
+  /* ---------- Global open items panel ---------- */
+  .open-panel{
+    max-width: 760px; margin: 28px auto 0; padding: 20px 24px;
+    background: var(--cream-deep); border: 1px solid var(--rule); border-radius: 6px;
+  }
+  .open-panel h3{
+    font-family:'Cormorant Garamond', serif; font-style: italic; font-weight:600;
+    font-size: 20px; color: var(--clay); margin: 0 0 10px;
+  }
+  .open-panel ul{ margin:0; padding-left: 20px; }
+  .open-panel li{ font-size: 14.5px; margin-bottom: 6px; line-height:1.4; }
+</style>
+</head>
+<body class="locked">
+
+  <div class="gate" id="gate">
+    <div class="gate-card">
+      <div class="eyebrow">08 . 28 . 26</div>
+      <h1>Janan <span class="amp">&amp;</span> Juan</h1>
+      <p class="sub">This page is private. Enter the password to continue.</p>
+      <input type="password" id="gate-input" placeholder="Password" autocomplete="off">
+      <button id="gate-submit">Enter</button>
+      <div class="gate-error" id="gate-error"></div>
+    </div>
+  </div>
+
+  <div id="site">
+
+  <div class="masthead">
+    <div class="eyebrow">08 . 28 . 26</div>
+    <h1>Janan <span class="amp">&amp;</span> Juan</h1>
+    <div class="doctitle">Wedding Production Book</div>
+    <div class="meta">Palacio de Galiana · Toledo, Spain</div>
+  </div>
+
+  <nav class="nav" id="sectionNav">
+    <a href="#welcome">Welcome Reception</a>
+    <a href="#ceremony">Ceremony</a>
+    <a href="#cocktail">Cocktail Hour</a>
+    <a href="#dinner">Dinner</a>
+    <a href="#celebration">Celebration</a>
+    <a href="#return">Return</a>
+  </nav>
+
+
+  <div class="open-panel">
+    <h3>Open Items to Confirm</h3>
+    <ul>
+      <li>Welcome table — do we need to bring a basket for the sun umbrella?</li>
+      <li>Ceremony — decide on aisle runner (in progress)</li>
+      <li>Ceremony — confirm number of flower girls for rose petal basket</li>
+      <li>Need reference pictures of ceremony chairs</li>
+      <li>Need reference pictures of reception chairs</li>
+      <li>Need reference pictures of table covers</li>
+    </ul>
+  </div>
+
+  <div class="wrap">
+
+    <!-- ============ WELCOME RECEPTION ============ -->
+    <section class="section" id="welcome">
+      <div class="section-head">
+        <h2>Welcome Reception</h2>
+        <div class="time">6:00 PM – 6:30 PM</div>
+      </div>
+
+      <div class="block">
+        <h3>Guest Experience</h3>
+        <ul class="plain">
+          <li>Classical violin &amp; cello</li>
+          <li>Mirror welcome display</li>
+          <li>Guest book</li>
+          <li>Floral welcome table</li>
+          <li>Welcome cocktails</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Timeline</h3>
+        <div class="timeline-row"><div class="t">6:00 PM</div><div class="e">Guests arrive</div></div>
+        <div class="timeline-row"><div class="t"></div><div class="e">Violin &amp; cello begin</div></div>
+        <div class="timeline-row"><div class="t"></div><div class="e">Mirror &amp; guest book available</div></div>
+        <div class="timeline-row"><div class="t">6:30 PM</div><div class="e">Reception concludes</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Design &amp; Décor</h3>
+        <ul class="plain">
+          <li>Mirror sign</li><li>Guest book</li><li>Flowers</li><li>Candles</li>
+          <li>Welcome table styled with drinks &amp; a sun umbrella in a basket</li>
+          <li>Mirror will display a welcome message / monogram (see mockup)</li>
+          <li>Guest book table styled with notebook, pen, and camera</li>
+        </ul>
+        <div class="gallery">
+          <figure><img src="assets/inspo/inspo-01.jpg" alt="Welcome table inspiration"><figcaption>Welcome table inspiration — drinks &amp; sun umbrella in a basket</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-02.jpg" alt="Mirror welcome message mockup"><figcaption>Mirror welcome message mockup</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-03.jpg" alt="Guest book table styling"><figcaption>Guest book table styling — notebook, pen &amp; camera</figcaption></figure>
+        </div>
+        <div class="openq"><span class="tag">Open</span>Do we need to bring a basket for the welcome table umbrella?</div>
+        <div class="tobring">
+          <div class="tag">To Bring — Janan &amp; Juan</div>
+          <ul>
+            <li>Sun umbrella (for the welcome basket)</li>
+            <li>Notebook, pen &amp; guest book sign</li>
+            <li>Camera</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Entertainment</h3>
+        <p>Classical violin &amp; cello<br>Contact: Dani, +34 625 85 39 17</p>
+      </div>
+
+      <div class="block">
+        <h3>Food &amp; Beverage</h3>
+        <p>Light Lemonade station — to be confirmed</p>
+      </div>
+
+      <div class="block">
+        <h3>Photography &amp; Video</h3>
+        <ul class="plain">
+          <li>Guests arriving</li><li>Mirror display</li><li>Guest book</li>
+          <li>Couple greeting guests</li><li>Live musicians</li><li>Wide establishing shots</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Vendor Contacts</h3>
+        <div class="vendor"><div class="role">Violin &amp; Cello</div><div class="line">Contact: Dani, +34 625 85 39 17</div><div class="line">Arrival Time: —</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Production Checklist</h3>
+        <ul class="checklist" data-group="welcome">
+          <li data-id="mirror-installed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Mirror installed</span></li>
+          <li data-id="guestbook-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Guest book placed</span></li>
+          <li data-id="flowers-arranged"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Flowers arranged</span></li>
+          <li data-id="musicians-arrived"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Musicians arrived</span></li>
+          <li data-id="photographer-on-site"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer on site</span></li>
+          <li data-id="videographer-on-site"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer on site</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Notes</h3>
+        <textarea class="notes-area" data-notes="welcome" placeholder="Add notes for this section..."></textarea>
+        <div class="save-hint">Autosaves as you type</div>
+      </div>
+    </section>
+
+    <!-- ============ CEREMONY ============ -->
+    <section class="section" id="ceremony">
+      <div class="section-head">
+        <h2>Ceremony</h2>
+        <div class="time">6:30 PM – 7:00 PM</div>
+      </div>
+
+      <div class="block">
+        <h3>Guest Experience</h3>
+        <ul class="plain"><li>Violin &amp; cello</li><li>Fans &amp; Umbrellas for every guest</li><li>Ceremony flowers</li></ul>
+      </div>
+
+      <div class="block">
+        <h3>Timeline</h3>
+        <div class="timeline-row"><div class="t">6:00 PM</div><div class="e">Guests arrive</div></div>
+        <div class="timeline-row"><div class="t">6:30 PM</div><div class="e">Ceremony</div></div>
+        <div class="timeline-row"><div class="t">7:00 PM</div><div class="e">Ceremony concludes</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Design &amp; Décor</h3>
+        <ul class="plain">
+          <li>Flowers — white or neutral only, no dark colors (off-white)</li>
+          <li>Aisle flowers</li>
+          <li>Chairs</li>
+          <li>Mechanical fans placed on each chair</li>
+          <li>Rose petals in a basket for the flower girls</li>
+        </ul>
+        <div class="gallery">
+          <figure><img src="assets/inspo/inspo-04.jpg" alt="Arch styling reference"><figcaption>Arch styling reference — white/off-white flowers, not dark colors</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-05.jpg" alt="Bridal bouquet reference"><figcaption>Bridal bouquet reference</figcaption></figure>
+        </div>
+        <div class="openq"><span class="tag">Open</span>Aisle runner — still deciding whether to include one.</div>
+        <div class="openq"><span class="tag">Open</span>Confirm number of flower girls for the rose petal basket.</div>
+        <div class="tobring">
+          <div class="tag">To Bring — Janan &amp; Juan</div>
+          <ul><li>Mechanical fans for each chair</li></ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Entertainment</h3>
+        <p>Violin &amp; Cello<br>Contact: Dani, +34 625 85 39 17</p>
+      </div>
+
+      <div class="block">
+        <h3>Food &amp; Beverage</h3>
+        <p>—</p>
+      </div>
+
+      <div class="block">
+        <h3>Photography &amp; Video</h3>
+        <ul class="plain"><li>Bride entrance</li><li>Ring exchange</li><li>First kiss</li><li>Recessional</li></ul>
+      </div>
+
+      <div class="block">
+        <h3>Vendor Contacts</h3>
+        <div class="vendor"><div class="role">Violin &amp; Cello</div><div class="line">Contact: Dani, +34 625 85 39 17</div><div class="line">Arrival Time: —</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Production Checklist</h3>
+        <ul class="checklist" data-group="ceremony">
+          <li data-id="chairs-set"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Chairs set</span></li>
+          <li data-id="flowers-complete"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Flowers complete</span></li>
+          <li data-id="fans-distributed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Fans distributed</span></li>
+          <li data-id="sound-checked"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Sound checked</span></li>
+          <li data-id="musicians-ready"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Musicians ready</span></li>
+          <li data-id="photographer-positioned"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer positioned</span></li>
+          <li data-id="videographer-positioned"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer positioned</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Notes</h3>
+        <textarea class="notes-area" data-notes="ceremony" placeholder="Add notes for this section..."></textarea>
+        <div class="save-hint">Autosaves as you type</div>
+      </div>
+    </section>
+
+    <!-- ============ COCKTAIL HOUR ============ -->
+    <section class="section" id="cocktail">
+      <div class="section-head">
+        <h2>Cocktail Hour</h2>
+        <div class="time">7:00 PM – 8:00 PM (8:00–8:15 PM transition)</div>
+      </div>
+
+      <div class="block">
+        <h3>Guest Experience</h3>
+        <ul class="plain">
+          <li>Live flamenco</li><li>Green napkins</li><li>Couple entrance</li>
+          <li>Champagne tower</li><li>Passed appetizers</li><li>Cocktails</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Timeline</h3>
+        <div class="timeline-row"><div class="t">7:00 PM</div><div class="e">Cocktail hour</div></div>
+        <div class="timeline-row"><div class="t">7:00 PM</div><div class="e">Flamenco begins</div></div>
+        <div class="timeline-row"><div class="t">7:30 PM</div><div class="e">Couple entrance</div></div>
+        <div class="timeline-row"><div class="t"></div><div class="e">Guests wave green napkins</div></div>
+        <div class="timeline-row"><div class="t"></div><div class="e">Champagne tower</div></div>
+        <div class="timeline-row"><div class="t">8:00 PM</div><div class="e">Cocktail concludes</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Design &amp; Décor</h3>
+        <ul class="plain">
+          <li>Champagne tower</li><li>Cocktail tables</li><li>Green napkins</li>
+          <li>Florals — off-white / white flowers on tables only</li>
+        </ul>
+        <div class="openq"><span class="tag">Open</span>Napkin color conflict — original timeline says guests wave <em>green</em> napkins at the entrance; the design brief says to bring <em>white</em> napkins for that same moment. Confirm which.</div>
+        <div class="tobring">
+          <div class="tag">To Bring — Janan &amp; Juan</div>
+          <ul><li>White napkins for guests to wave during the couple's entrance moment</li></ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Entertainment</h3>
+        <p>Madrid Flamenco<br>Entrance song: Bamboleo<br>Contact: +34 690 38 64 49</p>
+      </div>
+
+      <div class="block">
+        <h3>Food &amp; Beverage</h3>
+        <ul class="plain"><li>Cocktails</li><li>Passed appetizers</li><li>Champagne tower</li></ul>
+      </div>
+
+      <div class="block">
+        <h3>Photography &amp; Video</h3>
+        <ul class="plain"><li>Couple greeting guests</li><li>Flamenco</li><li>Guest photos</li><li>Champagne tower</li><li>Architecture</li></ul>
+      </div>
+
+      <div class="block">
+        <h3>Vendor Contacts</h3>
+        <div class="vendor"><div class="role">Madrid Flamenco</div><div class="line">Contact: +34 690 38 64 49</div><div class="line">Arrival Time: —</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Production Checklist</h3>
+        <ul class="checklist" data-group="cocktail">
+          <li data-id="tower-assembled"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Champagne tower assembled</span></li>
+          <li data-id="napkins-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Green napkins placed</span></li>
+          <li data-id="flamenco-arrived"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Flamenco arrived</span></li>
+          <li data-id="entrance-cue-confirmed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Entrance cue confirmed</span></li>
+          <li data-id="photographer-ready-c"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer ready</span></li>
+          <li data-id="videographer-ready-c"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer ready</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Notes</h3>
+        <textarea class="notes-area" data-notes="cocktail" placeholder="Add notes for this section..."></textarea>
+        <div class="save-hint">Autosaves as you type</div>
+      </div>
+    </section>
+
+    <!-- ============ DINNER ============ -->
+    <section class="section" id="dinner">
+      <div class="section-head">
+        <h2>Dinner</h2>
+        <div class="time">8:15 PM – 10:15 PM</div>
+      </div>
+
+      <div class="block">
+        <h3>Guest Experience</h3>
+        <ul class="plain"><li>Multi-course dinner</li><li>Toasts</li><li>Warm candlelight</li></ul>
+      </div>
+
+      <div class="block">
+        <h3>Timeline</h3>
+        <div class="timeline-row"><div class="t">8:15 PM</div><div class="e">Dinner</div></div>
+        <div class="timeline-row"><div class="t">9:00 PM</div><div class="e">Speech — Mohamed</div></div>
+        <div class="timeline-row"><div class="t">9:10 PM</div><div class="e">Speech — Hernando</div></div>
+        <div class="timeline-row"><div class="t">9:20 PM</div><div class="e">Speech — Jesse</div></div>
+        <div class="timeline-row"><div class="t">9:30 PM</div><div class="e">Speech — Aala</div></div>
+        <div class="timeline-row"><div class="t">10:15 PM</div><div class="e">Dinner concludes</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Design &amp; Décor</h3>
+        <ul class="plain">
+          <li>White calla flower on each plate</li>
+          <li>Increase candles — focus on candle look/effect as much as florals</li>
+          <li>Floral centerpieces — light / white / off-white flowers</li>
+          <li>Curved tables for guests (not straight rows)</li>
+          <li>Draped tablecloth look</li>
+          <li>Small cake + champagne tower moment at the end of dinner (same table cover as other tables)</li>
+          <li>Ambient lighting</li>
+        </ul>
+        <div class="gallery">
+          <figure><img src="assets/inspo/inspo-06.jpg" alt="End-of-dinner cake and champagne tower moment"><figcaption>End-of-dinner cake &amp; champagne tower moment</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-07.jpg" alt="Candle look reference"><figcaption>Candle look reference — this is for candles, not florals</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-08.jpg" alt="Additional candle-look reference"><figcaption>Additional candle-look reference</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-09.jpg" alt="Flower arrangement and draped table cover style"><figcaption>Flower arrangement + draped table cover style, lots of candles</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-10.jpg" alt="Fabric reference for table covers"><figcaption>Fabric reference for table covers</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-11.jpg" alt="Full table candle look"><figcaption>Full table candle look</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-12.jpg" alt="Table arrangement reference, curved"><figcaption>Table arrangement reference — curved, not straight</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-13.jpg" alt="Table arrangement detail"><figcaption>Table arrangement detail</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-14.jpg" alt="Table arrangement long view"><figcaption>Table arrangement — long view</figcaption></figure>
+        </div>
+        <div class="openq"><span class="tag">Open</span>Need reference pictures of chairs.</div>
+        <div class="openq"><span class="tag">Open</span>Need reference pictures of table covers.</div>
+      </div>
+
+      <div class="block">
+        <h3>Entertainment</h3>
+        <p>Toasts as scheduled.</p>
+      </div>
+
+      <div class="block">
+        <h3>Food &amp; Beverage</h3>
+        <ul class="plain"><li>Multi-course dinner</li><li>Wine service</li><li>Dessert</li></ul>
+      </div>
+
+      <div class="block">
+        <h3>Photography &amp; Video</h3>
+        <ul class="plain"><li>Room reveal</li><li>Table details</li><li>Food</li><li>Toasts</li><li>Guest reactions</li><li>Sunset if possible</li></ul>
+      </div>
+
+      <div class="block">
+        <h3>Vendor Contacts</h3>
+        <div class="vendor"><div class="role">Catering</div><div class="line">Contact: —</div></div>
+        <div class="vendor"><div class="role">Coordinator</div><div class="line">Contact: —</div></div>
+        <div class="vendor"><div class="role">Planner</div><div class="line">Contact: —</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Production Checklist</h3>
+        <ul class="checklist" data-group="dinner">
+          <li data-id="tables-complete"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Tables complete</span></li>
+          <li data-id="candles-lit"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Candles lit</span></li>
+          <li data-id="menus-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Menus placed</span></li>
+          <li data-id="catering-ready"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Catering ready</span></li>
+          <li data-id="mics-tested"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Microphones tested</span></li>
+          <li data-id="photographer-ready-d"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer ready</span></li>
+          <li data-id="videographer-ready-d"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer ready</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Notes</h3>
+        <textarea class="notes-area" data-notes="dinner" placeholder="Add notes for this section..."></textarea>
+        <div class="save-hint">Autosaves as you type</div>
+      </div>
+    </section>
+
+    <!-- ============ CELEBRATION ============ -->
+    <section class="section" id="celebration">
+      <div class="section-head">
+        <h2>Celebration</h2>
+        <div class="time">10:15 PM – 3:00 AM</div>
+      </div>
+
+      <div class="block">
+        <h3>Guest Experience</h3>
+        <ul class="plain">
+          <li>Zaffah procession</li><li>First dance</li><li>Parent dances</li>
+          <li>Live violin into the party</li><li>Grand entrance to Khatafouny</li>
+          <li>Belly dancer performance</li><li>Bouquet toss</li><li>Fireworks (to be confirmed)</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Timeline</h3>
+        <div class="timeline-row"><div class="t">10:15 PM</div><div class="e">Zaffah</div></div>
+        <div class="timeline-row"><div class="t">10:40 PM</div><div class="e">First Dance</div></div>
+        <div class="timeline-row"><div class="t">10:43 PM</div><div class="e">Mother &amp; Son Dance</div></div>
+        <div class="timeline-row"><div class="t">10:46 PM</div><div class="e">Father &amp; Daughter Dance</div></div>
+        <div class="timeline-row"><div class="t">10:50 PM</div><div class="e">Violin performance; bride changes dress</div></div>
+        <div class="timeline-row"><div class="t">10:55 PM</div><div class="e">Grand Entrance — "Khatafouny"</div></div>
+        <div class="timeline-row"><div class="t">Following</div><div class="e">"La Vida Es Un Carnaval"</div></div>
+        <div class="timeline-row"><div class="t">11:30 PM</div><div class="e">Belly Dancer Performance</div></div>
+        <div class="timeline-row"><div class="t">12:00 AM</div><div class="e">Bouquet Toss</div></div>
+        <div class="timeline-row"><div class="t">12:05 AM</div><div class="e">Fireworks — to be confirmed</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Design &amp; Décor</h3>
+        <ul class="plain">
+          <li>Dance floor lighting</li>
+          <li>Uplighting</li>
+          <li>Smoke machine</li>
+          <li>LED neon sign — "Janan and Juan" (couple to provide), placed as in reference</li>
+          <li>Flowers placed similar to reference — white / off-white</li>
+          <li>Zaffah props / drums</li>
+          <li>Late-night lounge styling</li>
+          <li>Sparklers during the belly dancer's last song</li>
+        </ul>
+        <div class="gallery">
+          <figure><img src="assets/inspo/inspo-15.jpg" alt="LED sign placement reference"><figcaption>LED sign placement reference</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-16.jpg" alt="Room ambiance reference"><figcaption>Room ambiance reference — lighting &amp; flower placement</figcaption></figure>
+        </div>
+        <div class="tobring">
+          <div class="tag">To Bring — Janan &amp; Juan</div>
+          <ul>
+            <li>LED neon sign reading "Janan and Juan"</li>
+            <li>Sparklers for the belly dancer's last song (if needed)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3>Entertainment</h3>
+        <p>Violin (into the party, 10:50 PM)<br>Contact: Dani, +34 625 85 39 17</p>
+        <p>Zaffah performers (contact to be added).<br>Belly dancer (contact to be added).<br>DJ / band for party set (contact to be added).</p>
+      </div>
+
+      <div class="block">
+        <h3>Food &amp; Beverage</h3>
+        <ul class="plain"><li>Bar service continues</li><li>Late-night snack station (optional)</li></ul>
+      </div>
+
+      <div class="block">
+        <h3>Photography &amp; Video</h3>
+        <ul class="plain">
+          <li>Zaffah entrance</li><li>First dance</li><li>Parent dances</li>
+          <li>Dress change reveal</li><li>Grand entrance</li><li>Belly dancer</li>
+          <li>Bouquet toss</li><li>Fireworks</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Vendor Contacts</h3>
+        <div class="vendor"><div class="role">Violin</div><div class="line">Contact: Dani, +34 625 85 39 17</div></div>
+        <div class="vendor"><div class="role">DJ / Band</div><div class="line">Contact: —</div></div>
+        <div class="vendor"><div class="role">Belly Dancer</div><div class="line">Contact: —</div></div>
+        <div class="vendor"><div class="role">Fireworks</div><div class="line">Contact: —</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Production Checklist</h3>
+        <ul class="checklist" data-group="celebration">
+          <li data-id="dance-floor-cleared"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Dance floor cleared</span></li>
+          <li data-id="zaffah-cued"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Zaffah cued</span></li>
+          <li data-id="party-sound-checked"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Sound checked for party set</span></li>
+          <li data-id="belly-dancer-arrived"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Belly dancer arrived</span></li>
+          <li data-id="fireworks-cleared"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Fireworks vendor on site &amp; cleared for timing</span></li>
+          <li data-id="photographer-ready-cel"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer ready</span></li>
+          <li data-id="videographer-ready-cel"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer ready</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Notes</h3>
+        <textarea class="notes-area" data-notes="celebration" placeholder="Add notes for this section..."></textarea>
+        <div class="save-hint">Autosaves as you type</div>
+      </div>
+    </section>
+
+    <!-- ============ RETURN TRANSPORTATION ============ -->
+    <section class="section" id="return">
+      <div class="section-head">
+        <h2>Return Transportation</h2>
+        <div class="time">12:00 AM – 3:00 AM</div>
+      </div>
+
+      <div class="block">
+        <h3>Timeline</h3>
+        <div class="timeline-row"><div class="t">12:00 AM</div><div class="e">First departure</div></div>
+        <div class="timeline-row"><div class="t">3:00 AM</div><div class="e">Final departure</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Vendor Contacts</h3>
+        <div class="vendor"><div class="role">Transportation Company</div><div class="line">Contact: —</div></div>
+      </div>
+
+      <div class="block">
+        <h3>Production Checklist</h3>
+        <ul class="checklist" data-group="return">
+          <li data-id="drivers-confirmed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Drivers confirmed</span></li>
+          <li data-id="departure-announced"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Departure times announced to guests</span></li>
+          <li data-id="signage-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Signage placed at pickup point</span></li>
+          <li data-id="coordinator-stationed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Coordinator stationed at loading area</span></li>
+          <li data-id="final-headcount"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Final headcount confirmed</span></li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <h3>Notes</h3>
+        <textarea class="notes-area" data-notes="return" placeholder="Add notes for this section..."></textarea>
+        <div class="save-hint">Autosaves as you type</div>
+      </div>
+    </section>
+
+    <div class="footer">Janan &amp; Juan · Wedding Production Book · 08 . 28 . 26</div>
+
+  </div>
+
+  </div><!-- /#site -->
+
+<script>
+(function(){
+  // ---- Password gate ----
+  var PASSWORD = "JananJuan0828";
+  var body = document.body;
+  var gate = document.getElementById('gate');
+  var input = document.getElementById('gate-input');
+  var submit = document.getElementById('gate-submit');
+  var error = document.getElementById('gate-error');
+
+  function unlock(){
+    body.classList.remove('locked');
+    gate.classList.add('hidden');
+  }
+
+  function tryUnlock(){
+    if(input.value === PASSWORD){
+      try{ sessionStorage.setItem('jjw-auth', 'true'); }catch(e){}
+      unlock();
+    } else {
+      error.textContent = 'Incorrect password.';
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  var alreadyAuthed = false;
+  try{ alreadyAuthed = sessionStorage.getItem('jjw-auth') === 'true'; }catch(e){}
+  if(alreadyAuthed){ unlock(); }
+
+  submit.addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ tryUnlock(); } });
+
+  // ---- Checklist persistence via localStorage ----
+  function loadChecklistState(){
+    try{
+      var raw = localStorage.getItem('production-book-checklist');
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function saveChecklistState(state){
+    try{ localStorage.setItem('production-book-checklist', JSON.stringify(state)); }catch(e){}
+  }
+  function loadNotes(){
+    try{
+      var raw = localStorage.getItem('production-book-notes');
+      return raw ? JSON.parse(raw) : {};
+    }catch(e){ return {}; }
+  }
+  function saveNotes(notes){
+    try{ localStorage.setItem('production-book-notes', JSON.stringify(notes)); }catch(e){}
+  }
+
+  var checklistState = loadChecklistState();
+  var notesState = loadNotes();
+
+  function init(){
+    document.querySelectorAll('.checklist li').forEach(function(li){
+      var group = li.closest('.checklist').dataset.group;
+      var id = group + ':' + li.dataset.id;
+      if(checklistState[id]){ li.classList.add('checked'); }
+      li.addEventListener('click', function(){
+        li.classList.toggle('checked');
+        checklistState[id] = li.classList.contains('checked');
+        saveChecklistState(checklistState);
+      });
+    });
+
+    document.querySelectorAll('.notes-area').forEach(function(area){
+      var key = area.dataset.notes;
+      if(notesState[key]){ area.value = notesState[key]; }
+      var t;
+      area.addEventListener('input', function(){
+        clearTimeout(t);
+        t = setTimeout(function(){
+          notesState[key] = area.value;
+          saveNotes(notesState);
+        }, 500);
+      });
+    });
+  }
+  init();
+
+  // ---- Active nav highlight on scroll ----
+  var navLinks = Array.from(document.querySelectorAll('#sectionNav a'));
+  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function onScroll(){
+    var current = sections[0];
+    var y = window.scrollY + 90;
+    sections.forEach(function(sec){ if(sec && sec.offsetTop <= y) current = sec; });
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current.id);
+    });
+  }
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
