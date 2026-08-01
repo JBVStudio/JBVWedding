@@ -138,24 +138,61 @@
     border: 1px solid var(--rule);
     white-space: nowrap;
   }
-  .nav a:hover, .nav a.active{
+  .nav a:hover, .nav a.active,
+  .nav-dropdown-trigger:hover, .nav-dropdown-trigger.active{
     background: var(--clay);
     color: var(--cream);
     border-color: var(--clay);
   }
 
+  /* ---------- Events dropdown ---------- */
+  .nav-dropdown{ position:relative; flex-shrink:0; }
+  .nav-dropdown-trigger{
+    font-family: 'EB Garamond', serif;
+    flex-shrink:0;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--rule);
+    white-space: nowrap;
+    background: transparent;
+    cursor: pointer;
+  }
+  .nav-dropdown-panel{
+    position:absolute; top: calc(100% + 6px); left:0;
+    background: var(--cream); border:1px solid var(--rule); border-radius:8px;
+    display:none; flex-direction:column; min-width:190px; z-index:30;
+    box-shadow: 0 10px 24px rgba(43,36,32,0.12);
+    overflow:hidden;
+  }
+  .nav-dropdown-panel.open{ display:flex; }
+  .nav-dropdown-panel a{
+    text-decoration:none; font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+    color: var(--ink-soft); padding:11px 16px; border-bottom:1px solid var(--rule);
+    white-space:nowrap;
+  }
+  .nav-dropdown-panel a:last-child{ border-bottom:none; }
+  .nav-dropdown-panel a:hover, .nav-dropdown-panel a.active{
+    background: var(--cream-deep); color: var(--clay);
+  }
+
   .wrap{
-    max-width: 760px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 40px 28px 100px;
   }
 
-  /* ---------- Section card ---------- */
-  .section{
-    margin-top: 64px;
-    scroll-margin-top: 64px;
+  /* ---------- Page (single view at a time) ---------- */
+  .page{ display:none; }
+  .page.active{ display:block; }
+
+  @media (min-width: 720px){
+    .page-body{ column-count: 2; column-gap: 44px; }
+    .page-body .block{ break-inside: avoid; -webkit-column-break-inside: avoid; }
   }
-  .section:first-child{ margin-top: 20px; }
 
   .section-head{
     margin-bottom: 22px;
@@ -388,41 +425,54 @@
   </div>
 
   <nav class="nav" id="sectionNav">
-    <a href="#welcome">Welcome Reception</a>
-    <a href="#ceremony">Ceremony</a>
-    <a href="#cocktail">Cocktail Hour</a>
-    <a href="#dinner">Dinner</a>
-    <a href="#celebration">Celebration</a>
-    <a href="#return">Return</a>
-    <a href="#contacts">Contact Information</a>
-    <a href="#todo">J&amp;J To-Do</a>
+    <a href="#page-overview" data-page="overview">Overview</a>
+    <div class="nav-dropdown" id="eventsDropdown">
+      <button class="nav-dropdown-trigger" id="eventsTrigger" type="button">Events ▾</button>
+      <div class="nav-dropdown-panel" id="eventsPanel">
+        <a href="#page-welcome" data-page="welcome">Welcome Reception</a>
+        <a href="#page-ceremony" data-page="ceremony">Ceremony</a>
+        <a href="#page-cocktail" data-page="cocktail">Cocktail Hour</a>
+        <a href="#page-dinner" data-page="dinner">Dinner</a>
+        <a href="#page-celebration" data-page="celebration">Celebration</a>
+        <a href="#page-return" data-page="return">Return</a>
+      </div>
+    </div>
+    <a href="#page-contacts" data-page="contacts">Contact Information</a>
+    <a href="#page-todo" data-page="todo">J&amp;J To-Do</a>
   </nav>
-
-
-  <div class="open-panel">
-    <h3>Open Items to Confirm</h3>
-    <ul>
-      <li>Welcome table — do we need to bring a basket for the sun umbrella?</li>
-      <li>Ceremony — decide on aisle runner (in progress)</li>
-      <li>Ceremony — determine placement for the 2 violin players</li>
-      <li>Cocktail hour — confirm Flamenco band placement (up with guests on the second level, not at the bottom)</li>
-      <li>Dinner — seating chart mirror: can the venue provide one, or do we need to source a vendor?</li>
-      <li>Celebration — LED sign wording conflict: earlier notes say "Janan and Juan", newer notes say "J and J" — confirm exact text</li>
-      <li>Need reference pictures of ceremony chairs</li>
-      <li>Need reference pictures of reception chairs</li>
-      <li>Need reference pictures of table covers</li>
-    </ul>
-  </div>
 
   <div class="wrap">
 
+    <!-- ============ OVERVIEW ============ -->
+    <section class="page active" id="overview">
+      <div class="section-head">
+        <h2>Overview</h2>
+        <div class="time">Open items across the day</div>
+      </div>
+      <div class="open-panel">
+        <h3>Open Items to Confirm</h3>
+        <ul>
+          <li>Welcome table — do we need to bring a basket for the sun umbrella?</li>
+          <li>Ceremony — decide on aisle runner (in progress)</li>
+          <li>Ceremony — determine placement for the 2 violin players</li>
+          <li>Cocktail hour — confirm Flamenco band placement (up with guests on the second level, not at the bottom)</li>
+          <li>Dinner — seating chart mirror: can the venue provide one, or do we need to source a vendor?</li>
+          <li>Celebration — LED sign wording conflict: earlier notes say "Janan and Juan", newer notes say "J and J" — confirm exact text</li>
+          <li>Need reference pictures of ceremony chairs</li>
+          <li>Need reference pictures of reception chairs</li>
+          <li>Need reference pictures of table covers</li>
+        </ul>
+      </div>
+    </section>
+
     <!-- ============ WELCOME RECEPTION ============ -->
-    <section class="section" id="welcome">
+    <section class="page" id="welcome">
       <div class="section-head">
         <h2>Welcome Reception</h2>
         <div class="time">6:00 PM – 6:30 PM</div>
       </div>
 
+      <div class="page-body">
       <div class="block">
         <h3>Guest Experience</h3>
         <ul class="plain">
@@ -496,15 +546,17 @@
         <textarea class="notes-area" data-notes="welcome" placeholder="Add notes for this section..."></textarea>
         <div class="save-hint">Autosaves as you type</div>
       </div>
+      </div>
     </section>
 
     <!-- ============ CEREMONY ============ -->
-    <section class="section" id="ceremony">
+    <section class="page" id="ceremony">
       <div class="section-head">
         <h2>Ceremony</h2>
         <div class="time">6:30 PM – 7:00 PM</div>
       </div>
 
+      <div class="page-body">
       <div class="block">
         <h3>Guest Experience</h3>
         <ul class="plain"><li>Violin &amp; cello</li><li>Fans &amp; Umbrellas for every guest</li><li>Ceremony flowers</li></ul>
@@ -576,15 +628,17 @@
         <textarea class="notes-area" data-notes="ceremony" placeholder="Add notes for this section..."></textarea>
         <div class="save-hint">Autosaves as you type</div>
       </div>
+      </div>
     </section>
 
     <!-- ============ COCKTAIL HOUR ============ -->
-    <section class="section" id="cocktail">
+    <section class="page" id="cocktail">
       <div class="section-head">
         <h2>Cocktail Hour</h2>
         <div class="time">7:00 PM – 8:00 PM (8:00–8:15 PM transition)</div>
       </div>
 
+      <div class="page-body">
       <div class="block">
         <h3>Guest Experience</h3>
         <ul class="plain">
@@ -652,15 +706,17 @@
         <textarea class="notes-area" data-notes="cocktail" placeholder="Add notes for this section..."></textarea>
         <div class="save-hint">Autosaves as you type</div>
       </div>
+      </div>
     </section>
 
     <!-- ============ DINNER ============ -->
-    <section class="section" id="dinner">
+    <section class="page" id="dinner">
       <div class="section-head">
         <h2>Dinner</h2>
         <div class="time">8:15 PM – 10:15 PM</div>
       </div>
 
+      <div class="page-body">
       <div class="block">
         <h3>Guest Experience</h3>
         <ul class="plain"><li>Multi-course dinner</li><li>Toasts</li><li>Warm candlelight</li></ul>
@@ -749,15 +805,17 @@
         <textarea class="notes-area" data-notes="dinner" placeholder="Add notes for this section..."></textarea>
         <div class="save-hint">Autosaves as you type</div>
       </div>
+      </div>
     </section>
 
     <!-- ============ CELEBRATION ============ -->
-    <section class="section" id="celebration">
+    <section class="page" id="celebration">
       <div class="section-head">
         <h2>Celebration</h2>
         <div class="time">10:15 PM – 3:00 AM</div>
       </div>
 
+      <div class="page-body">
       <div class="block">
         <h3>Guest Experience</h3>
         <ul class="plain">
@@ -848,15 +906,17 @@
         <textarea class="notes-area" data-notes="celebration" placeholder="Add notes for this section..."></textarea>
         <div class="save-hint">Autosaves as you type</div>
       </div>
+      </div>
     </section>
 
     <!-- ============ RETURN TRANSPORTATION ============ -->
-    <section class="section" id="return">
+    <section class="page" id="return">
       <div class="section-head">
         <h2>Return Transportation</h2>
         <div class="time">12:00 AM – 3:00 AM</div>
       </div>
 
+      <div class="page-body">
       <div class="block">
         <h3>Timeline</h3>
         <div class="timeline-row"><div class="t">12:00 AM</div><div class="e">First departure</div></div>
@@ -884,15 +944,17 @@
         <textarea class="notes-area" data-notes="return" placeholder="Add notes for this section..."></textarea>
         <div class="save-hint">Autosaves as you type</div>
       </div>
+      </div>
     </section>
 
     <!-- ============ CONTACT INFORMATION ============ -->
-    <section class="section" id="contacts">
+    <section class="page" id="contacts">
       <div class="section-head">
         <h2>Contact Information</h2>
         <div class="time">Every vendor, at a glance</div>
       </div>
 
+      <div class="page-body">
       <div class="block">
         <h3>Entertainment</h3>
         <div class="vendor"><div class="role">Violin &amp; Cello</div><div class="line">Contact: Dani, +34 625 85 39 17</div><div class="line">Welcome Reception, Ceremony &amp; Celebration (into the party)</div></div>
@@ -920,15 +982,17 @@
         <textarea class="notes-area" data-notes="contacts" placeholder="Add notes for this section..."></textarea>
         <div class="save-hint">Autosaves as you type</div>
       </div>
+      </div>
     </section>
 
     <!-- ============ J&J TO-DO ============ -->
-    <section class="section" id="todo">
+    <section class="page" id="todo">
       <div class="section-head">
         <h2>J&amp;J To-Do</h2>
         <div class="time">Janan &amp; Juan's task list</div>
       </div>
 
+      <div class="page-body">
       <div class="block">
         <h3>Tasks</h3>
         <p>No tasks yet — check back soon.</p>
@@ -938,6 +1002,7 @@
         <h3>Notes</h3>
         <textarea class="notes-area" data-notes="todo" placeholder="Add notes for this section..."></textarea>
         <div class="save-hint">Autosaves as you type</div>
+      </div>
       </div>
     </section>
 
@@ -1030,19 +1095,52 @@
   }
   init();
 
-  // ---- Active nav highlight on scroll ----
-  var navLinks = Array.from(document.querySelectorAll('#sectionNav a'));
-  var sections = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
-  function onScroll(){
-    var current = sections[0];
-    var y = window.scrollY + 90;
-    sections.forEach(function(sec){ if(sec && sec.offsetTop <= y) current = sec; });
-    navLinks.forEach(function(a){
-      a.classList.toggle('active', a.getAttribute('href') === '#' + current.id);
+  // ---- Page routing (hash-based, one page visible at a time) ----
+  var EVENT_PAGES = ['welcome','ceremony','cocktail','dinner','celebration','return'];
+  var ALL_PAGES = ['overview'].concat(EVENT_PAGES, ['contacts','todo']);
+  var navLinks = Array.from(document.querySelectorAll('.nav a[data-page]'));
+  var eventsTrigger = document.getElementById('eventsTrigger');
+  var eventsPanel = document.getElementById('eventsPanel');
+
+  function closeDropdown(){ eventsPanel.classList.remove('open'); }
+
+  function showPage(id){
+    if(ALL_PAGES.indexOf(id) === -1){ id = 'overview'; }
+    document.querySelectorAll('.page').forEach(function(p){
+      p.classList.toggle('active', p.id === id);
     });
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.dataset.page === id);
+    });
+    eventsTrigger.classList.toggle('active', EVENT_PAGES.indexOf(id) !== -1);
+    closeDropdown();
+    window.scrollTo(0, 0);
   }
-  window.addEventListener('scroll', onScroll);
-  onScroll();
+
+  // Hash is prefixed ("#page-x") so it never matches a page's own element
+  // id — otherwise the browser's native scroll-to-anchor fires and fights
+  // with the scrollTo(0,0) above.
+  function pageFromHash(){
+    return location.hash.replace('#page-', '') || 'overview';
+  }
+
+  navLinks.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = 'page-' + a.dataset.page;
+      if(location.hash === '#' + target){ showPage(a.dataset.page); }
+      else { location.hash = target; }
+    });
+  });
+
+  eventsTrigger.addEventListener('click', function(e){
+    e.stopPropagation();
+    eventsPanel.classList.toggle('open');
+  });
+  document.addEventListener('click', closeDropdown);
+
+  window.addEventListener('hashchange', function(){ showPage(pageFromHash()); });
+  showPage(pageFromHash());
 })();
 </script>
 
