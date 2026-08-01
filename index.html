@@ -162,7 +162,7 @@
     cursor: pointer;
   }
   .nav-dropdown-panel{
-    position:absolute; top: calc(100% + 6px); left:0;
+    position:fixed; top:0; left:0;
     background: var(--cream); border:1px solid var(--rule); border-radius:8px;
     display:none; flex-direction:column; min-width:190px; z-index:30;
     box-shadow: 0 10px 24px rgba(43,36,32,0.12);
@@ -428,18 +428,22 @@
     <a href="#page-overview" data-page="overview">Overview</a>
     <div class="nav-dropdown" id="eventsDropdown">
       <button class="nav-dropdown-trigger" id="eventsTrigger" type="button">Events ▾</button>
-      <div class="nav-dropdown-panel" id="eventsPanel">
-        <a href="#page-welcome" data-page="welcome">Welcome Reception</a>
-        <a href="#page-ceremony" data-page="ceremony">Ceremony</a>
-        <a href="#page-cocktail" data-page="cocktail">Cocktail Hour</a>
-        <a href="#page-dinner" data-page="dinner">Dinner</a>
-        <a href="#page-celebration" data-page="celebration">Celebration</a>
-        <a href="#page-return" data-page="return">Return</a>
-      </div>
     </div>
     <a href="#page-contacts" data-page="contacts">Contact Information</a>
     <a href="#page-todo" data-page="todo">J&amp;J To-Do</a>
   </nav>
+
+  <!-- Rendered outside .nav (position:fixed, JS-positioned) because .nav's
+       backdrop-filter creates a containing block for fixed descendants,
+       which broke viewport-relative positioning when nested inside it. -->
+  <div class="nav-dropdown-panel" id="eventsPanel">
+    <a href="#page-welcome" data-page="welcome">Welcome Reception</a>
+    <a href="#page-ceremony" data-page="ceremony">Ceremony</a>
+    <a href="#page-cocktail" data-page="cocktail">Cocktail Hour</a>
+    <a href="#page-dinner" data-page="dinner">Dinner</a>
+    <a href="#page-celebration" data-page="celebration">Celebration</a>
+    <a href="#page-return" data-page="return">Return</a>
+  </div>
 
   <div class="wrap">
 
@@ -1098,7 +1102,7 @@
   // ---- Page routing (hash-based, one page visible at a time) ----
   var EVENT_PAGES = ['welcome','ceremony','cocktail','dinner','celebration','return'];
   var ALL_PAGES = ['overview'].concat(EVENT_PAGES, ['contacts','todo']);
-  var navLinks = Array.from(document.querySelectorAll('.nav a[data-page]'));
+  var navLinks = Array.from(document.querySelectorAll('.nav a[data-page], .nav-dropdown-panel a[data-page]'));
   var eventsTrigger = document.getElementById('eventsTrigger');
   var eventsPanel = document.getElementById('eventsPanel');
 
@@ -1133,11 +1137,20 @@
     });
   });
 
+  function positionDropdown(){
+    var r = eventsTrigger.getBoundingClientRect();
+    eventsPanel.style.top = (r.bottom + 6) + 'px';
+    eventsPanel.style.left = r.left + 'px';
+  }
+
   eventsTrigger.addEventListener('click', function(e){
     e.stopPropagation();
+    if(!eventsPanel.classList.contains('open')){ positionDropdown(); }
     eventsPanel.classList.toggle('open');
   });
   document.addEventListener('click', closeDropdown);
+  window.addEventListener('scroll', closeDropdown, true);
+  window.addEventListener('resize', closeDropdown);
 
   window.addEventListener('hashchange', function(){ showPage(pageFromHash()); });
   showPage(pageFromHash());
