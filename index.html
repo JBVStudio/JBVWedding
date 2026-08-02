@@ -510,6 +510,7 @@
   <nav class="nav" id="sectionNav">
     <a href="#page-overview" data-page="overview">Overview</a>
     <a href="#page-agenda" data-page="agenda">Agenda</a>
+    <a href="#page-visual" data-page="visual">Visual Expectations</a>
     <div class="nav-dropdown" id="eventsDropdown">
       <button class="nav-dropdown-trigger" id="eventsTrigger" type="button">Events ▾</button>
     </div>
@@ -726,6 +727,88 @@
             </ul>
           </div>
           <div class="openq"><span class="tag">Open</span>Departure time conflict — this master timeline says first departure is 1:00 AM, but the Return page says 12:00 AM. Confirm which is correct.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ VISUAL EXPECTATIONS ============ -->
+    <section class="page" id="visual">
+      <div class="section-head">
+        <h2>Visual Expectations</h2>
+        <div class="time">Design language &amp; visual requests, moment by moment</div>
+      </div>
+
+      <div class="block">
+        <h3>Design Language</h3>
+        <p>One consistent, off-white / neutral floral palette runs through the entire day — welcome, ceremony, cocktail hour, and dinner all draw from the same tone of flowers. Nothing dark or mismatched; every arrangement should read as part of the same family.</p>
+      </div>
+
+      <div class="page-body">
+        <div class="block">
+          <h3>Welcome Reception</h3>
+          <ul class="plain">
+            <li>Mirror with the custom welcome messaging/design</li>
+            <li>Off-white/neutral flower placement, consistent with the rest of the wedding</li>
+            <li>Basket for the umbrellas — confirm whether we need to bring one</li>
+            <li>Janan &amp; Juan to bring the sun umbrellas for the basket</li>
+          </ul>
+          <div class="gallery">
+            <figure><img src="assets/inspo/inspo-02.jpg" alt="Mirror welcome message mockup"><figcaption>Mirror welcome message mockup</figcaption></figure>
+          </div>
+        </div>
+
+        <div class="block">
+          <h3>Ceremony</h3>
+          <ul class="plain">
+            <li>No chairs for the couple — Juan, Janan &amp; officiant Nabeel stand; will need a mic</li>
+            <li>Flower style as circled in the reference photo — off-white/neutral, consistent with the rest</li>
+            <li>Aisle flowers</li>
+            <li>Rose petals in baskets for the four flower girls</li>
+            <li>Bridal bouquet as shown in the reference photo</li>
+          </ul>
+          <div class="gallery">
+            <figure><img src="assets/inspo/inspo-04.jpg" alt="Ceremony arch floral style, circled"><figcaption>Ceremony arch floral style — circled area shows the look requested</figcaption></figure>
+          </div>
+          <div class="openq"><span class="tag">Open</span>Placement for the 2 violin players still needs to be found.</div>
+        </div>
+
+        <div class="block">
+          <h3>Cocktail Hour</h3>
+          <ul class="plain">
+            <li>Off-white, neutral flowers on tables — consistent with the rest of the flowers</li>
+            <li>White fabric napkins (Janan &amp; Juan to bring) for the entrance twirl moment</li>
+          </ul>
+          <div class="openq"><span class="tag">Open</span>Flamenco band placement — needs to be visible, up with guests on the second level, not at the bottom.</div>
+        </div>
+
+        <div class="block">
+          <h3>Dinner</h3>
+          <ul class="plain">
+            <li>Mirror styled with flowers &amp; candles at the base; guest seating arrangement displayed on the mirror — the seating arrangement needs to be printed</li>
+            <li>Name tags (Janan &amp; Juan to bring) placed on plates together with the white calla flower — wedding team's responsibility to place them</li>
+            <li>Small cake + champagne tower moment at the end of dinner, on a small table with a cover matching the other dinner tables</li>
+            <li>Curved tables, draped tablecloth look</li>
+            <li>Heavy candle presence — the candle look matters as much as the florals</li>
+          </ul>
+          <div class="gallery">
+            <figure><img src="assets/inspo/dinner-seating-mirror.jpg" alt="Seating chart mirror with flowers and candles"><figcaption>Seating chart mirror styling — flowers &amp; candles at the base</figcaption></figure>
+          </div>
+          <div class="openq"><span class="tag">Open</span>Still need to find the right spot for the seating-chart mirror during dinner.</div>
+        </div>
+
+        <div class="block">
+          <h3>Reception / Party</h3>
+          <ul class="plain">
+            <li>Soft white lighting</li>
+            <li>Smoke machine</li>
+            <li>Low-seated &amp; high-top tables near the dance floor, to keep the group together (small guest count)</li>
+            <li>LED neon sign reading "J and J", placed as in the reference photo</li>
+            <li>Flowers near the LED sign to match the rest of the theme</li>
+            <li>Sparklers for the belly dancer's last song (Janan &amp; Juan can bring if needed)</li>
+          </ul>
+          <div class="gallery">
+            <figure><img src="assets/inspo/celebration-led-sign-venue.jpg" alt="LED sign placement at the venue"><figcaption>LED sign placement reference — actual venue space</figcaption></figure>
+          </div>
         </div>
       </div>
     </section>
@@ -1404,7 +1487,7 @@
 
   // ---- Page routing (hash-based, one page visible at a time) ----
   var EVENT_PAGES = ['welcome','ceremony','cocktail','dinner','celebration','return'];
-  var ALL_PAGES = ['overview','agenda'].concat(EVENT_PAGES, ['contacts','todo']);
+  var ALL_PAGES = ['overview','agenda','visual'].concat(EVENT_PAGES, ['contacts','todo']);
   var navLinks = Array.from(document.querySelectorAll('.nav a[data-page], .nav-dropdown-panel a[data-page]'));
   var eventsTrigger = document.getElementById('eventsTrigger');
   var eventsPanel = document.getElementById('eventsPanel');
