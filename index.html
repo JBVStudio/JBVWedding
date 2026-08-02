@@ -247,6 +247,46 @@
     color: var(--gold);
   }
 
+  ol.numbered{
+    list-style: none;
+    counter-reset: numbered;
+    margin: 0; padding: 0;
+  }
+  ol.numbered li{
+    font-size: 16px;
+    padding: 6px 0 6px 26px;
+    position: relative;
+    line-height: 1.4;
+    counter-increment: numbered;
+  }
+  ol.numbered li::before{
+    content: counter(numbered) ".";
+    position: absolute;
+    left: 0;
+    color: var(--clay);
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+  }
+
+  .agenda-item .agenda-head{
+    display:flex; align-items:baseline; gap:12px; margin-bottom:12px;
+  }
+  .agenda-item .agenda-time{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600; font-size: 20px; color: var(--clay);
+    white-space: nowrap;
+  }
+  .agenda-item .agenda-title{
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 20px; color: var(--ink);
+  }
+  .agenda-sub{ margin-top: 14px; }
+  .agenda-sub h4{
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-soft); margin: 0 0 6px; font-weight: 600;
+  }
+  .agenda-sub p{ margin:0; font-size: 15px; line-height: 1.5; }
+
   .timeline-row{
     display:grid;
     grid-template-columns: 96px 1fr;
@@ -469,6 +509,7 @@
 
   <nav class="nav" id="sectionNav">
     <a href="#page-overview" data-page="overview">Overview</a>
+    <a href="#page-agenda" data-page="agenda">Agenda</a>
     <div class="nav-dropdown" id="eventsDropdown">
       <button class="nav-dropdown-trigger" id="eventsTrigger" type="button">Events ▾</button>
     </div>
@@ -509,6 +550,183 @@
           <li>Need reference pictures of reception chairs</li>
           <li>Need reference pictures of table covers</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- ============ AGENDA ============ -->
+    <section class="page" id="agenda">
+      <div class="section-head">
+        <h2>Agenda</h2>
+        <div class="time">Master timeline — Palacio de Galiana · August 28, 2026</div>
+      </div>
+
+      <div class="page-body">
+        <div class="block agenda-item">
+          <div class="agenda-head">
+            <div class="agenda-time">6:00 – 6:30 PM</div>
+            <div class="agenda-title">Welcome Reception</div>
+          </div>
+          <div class="agenda-sub">
+            <h4>Purpose</h4>
+            <p>Allow guests to arrive comfortably, enjoy refreshments, and create a beautiful first impression before the ceremony.</p>
+          </div>
+          <div class="agenda-sub">
+            <h4>Guest Experience</h4>
+            <ul class="plain">
+              <li>Lemonade stand</li>
+              <li>Decorative mirror with custom artwork</li>
+              <li>Beautiful floral display</li>
+              <li>Basket of sun umbrellas/fans</li>
+              <li>Photographer &amp; videographer capturing arrivals</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block agenda-item">
+          <div class="agenda-head">
+            <div class="agenda-time">6:30 – 7:00 PM</div>
+            <div class="agenda-title">Ceremony</div>
+          </div>
+          <div class="agenda-sub">
+            <h4>Highlights</h4>
+            <ul class="plain">
+              <li>Live violin &amp; cello</li>
+              <li>Beautiful floral arrangements</li>
+              <li>Amino arrives in a toy car to deliver the rings</li>
+              <li>Four flower girls</li>
+            </ul>
+          </div>
+          <div class="agenda-sub">
+            <h4>Processional Order</h4>
+            <ol class="numbered">
+              <li>Groom (Juan)</li>
+              <li>Groom's mother and father</li>
+              <li>Groom's sister &amp; oldest nephew</li>
+              <li>Youngest nephew &amp; niece</li>
+              <li>Bride's first brother &amp; wife</li>
+              <li>Bride's second brother &amp; wife</li>
+              <li>Bride's sister &amp; husband</li>
+              <li>Bride's mother (and potentially best friend)</li>
+              <li>Bride &amp; father</li>
+              <li>Four flower girls</li>
+            </ol>
+          </div>
+          <div class="agenda-sub">
+            <h4>Ceremony Details</h4>
+            <ul class="plain">
+              <li>Wireless microphones</li>
+              <li>Guest seating</li>
+              <li>Sun fans/umbrellas available</li>
+              <li>Flowers</li>
+              <li>Photographer</li>
+              <li>Videographer</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block agenda-item">
+          <div class="agenda-head">
+            <div class="agenda-time">7:00 – 8:00 PM</div>
+            <div class="agenda-title">Cocktail Hour</div>
+          </div>
+          <div class="agenda-sub">
+            <h4>First 30 Minutes</h4>
+            <ul class="plain">
+              <li>Bride &amp; groom taking portraits</li>
+              <li>Guests enjoy drinks and appetizers</li>
+              <li>Live flamenco band performance</li>
+            </ul>
+          </div>
+          <div class="agenda-sub">
+            <h4>Second 30 Minutes</h4>
+            <ul class="plain">
+              <li>Bride &amp; groom join guests</li>
+              <li>White napkin twirl celebration (napkins provided)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block agenda-item">
+          <div class="agenda-head">
+            <div class="agenda-time">8:15 – 10:15 PM</div>
+            <div class="agenda-title">Dinner Reception</div>
+          </div>
+          <div class="agenda-sub">
+            <h4>Guest Experience</h4>
+            <p>Elegant candlelit dinner with beautiful floral centerpieces.</p>
+          </div>
+          <div class="agenda-sub">
+            <h4>Program</h4>
+            <ul class="plain">
+              <li>Welcome</li>
+              <li>Dinner service</li>
+              <li>Speeches</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block agenda-item">
+          <div class="agenda-head">
+            <div class="agenda-time">10:15 PM –</div>
+            <div class="agenda-title">Party</div>
+          </div>
+          <div class="agenda-sub">
+            <h4>Grand Entrance</h4>
+            <p>Kafta tradition</p>
+          </div>
+          <div class="agenda-sub">
+            <h4>Special Dances</h4>
+            <ul class="plain">
+              <li>First dance</li>
+              <li>Father–daughter dance</li>
+              <li>Mother–son dance</li>
+            </ul>
+          </div>
+          <div class="agenda-sub">
+            <h4>Bride Outfit Change</h4>
+            <ul class="plain">
+              <li>Live violin performance while the bride changes</li>
+              <li>Transition to DJ set</li>
+            </ul>
+          </div>
+          <div class="agenda-sub">
+            <h4>Entertainment</h4>
+            <ul class="plain">
+              <li>DJ</li>
+              <li>Belly dancer</li>
+              <li>Sparkler or LED tube show</li>
+            </ul>
+          </div>
+          <div class="agenda-sub">
+            <h4>Production</h4>
+            <ul class="plain">
+              <li>Professional lighting</li>
+              <li>Smoke effects</li>
+              <li>Disco ball</li>
+            </ul>
+          </div>
+          <div class="agenda-sub">
+            <h4>Guest Comfort</h4>
+            <ul class="plain">
+              <li>Reserved seating/tables for elderly guests</li>
+              <li>Late-night snacks and light food</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="block agenda-item">
+          <div class="agenda-head">
+            <div class="agenda-time">1:00 – 3:00 AM</div>
+            <div class="agenda-title">Transportation</div>
+          </div>
+          <div class="agenda-sub">
+            <ul class="plain">
+              <li>First departure: 1:00 AM</li>
+              <li>Final departure: 3:00 AM</li>
+            </ul>
+          </div>
+          <div class="openq"><span class="tag">Open</span>Departure time conflict — this master timeline says first departure is 1:00 AM, but the Return page says 12:00 AM. Confirm which is correct.</div>
+        </div>
       </div>
     </section>
 
@@ -1186,7 +1404,7 @@
 
   // ---- Page routing (hash-based, one page visible at a time) ----
   var EVENT_PAGES = ['welcome','ceremony','cocktail','dinner','celebration','return'];
-  var ALL_PAGES = ['overview'].concat(EVENT_PAGES, ['contacts','todo']);
+  var ALL_PAGES = ['overview','agenda'].concat(EVENT_PAGES, ['contacts','todo']);
   var navLinks = Array.from(document.querySelectorAll('.nav a[data-page], .nav-dropdown-panel a[data-page]'));
   var eventsTrigger = document.getElementById('eventsTrigger');
   var eventsPanel = document.getElementById('eventsPanel');
