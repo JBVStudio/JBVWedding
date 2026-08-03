@@ -513,12 +513,12 @@
 
   <nav class="nav" id="sectionNav">
     <a href="#page-overview" data-page="overview" class="nav-hidden">Overview</a>
-    <a href="#page-agenda" data-page="agenda">Agenda</a>
+    <a href="#page-agenda" data-page="agenda" class="nav-hidden">Agenda</a>
     <a href="#page-visual" data-page="visual">Visual Expectations</a>
     <div class="nav-dropdown nav-hidden" id="eventsDropdown">
       <button class="nav-dropdown-trigger" id="eventsTrigger" type="button">Events ▾</button>
     </div>
-    <a href="#page-contacts" data-page="contacts">Contact Information</a>
+    <a href="#page-contacts" data-page="contacts" class="nav-hidden">Contact Information</a>
     <a href="#page-todo" data-page="todo" class="nav-hidden">J&amp;J To-Do</a>
   </nav>
 
@@ -559,7 +559,7 @@
     </section>
 
     <!-- ============ AGENDA ============ -->
-    <section class="page active" id="agenda">
+    <section class="page" id="agenda">
       <div class="section-head">
         <h2>Agenda</h2>
         <div class="time">Master timeline — Palacio de Galiana · August 28, 2026</div>
@@ -736,7 +736,7 @@
     </section>
 
     <!-- ============ VISUAL EXPECTATIONS ============ -->
-    <section class="page" id="visual">
+    <section class="page active" id="visual">
       <div class="section-head">
         <h2>Visual Expectations</h2>
         <div class="time">Design language &amp; visual requests, moment by moment</div>
@@ -1512,7 +1512,7 @@
   function closeDropdown(){ eventsPanel.classList.remove('open'); }
 
   function showPage(id){
-    if(ALL_PAGES.indexOf(id) === -1){ id = 'agenda'; }
+    if(ALL_PAGES.indexOf(id) === -1){ id = 'visual'; }
     document.querySelectorAll('.page').forEach(function(p){
       p.classList.toggle('active', p.id === id);
     });
@@ -1528,7 +1528,7 @@
   // id — otherwise the browser's native scroll-to-anchor fires and fights
   // with the scrollTo(0,0) above.
   function pageFromHash(){
-    return location.hash.replace('#page-', '') || 'agenda';
+    return location.hash.replace('#page-', '') || 'visual';
   }
 
   navLinks.forEach(function(a){
