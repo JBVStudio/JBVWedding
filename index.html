@@ -111,6 +111,16 @@
     color: var(--ink-soft);
     text-transform: uppercase;
   }
+  .lang-toggle{
+    display:inline-flex; margin-top:16px; border:1px solid var(--rule); border-radius:20px; overflow:hidden;
+  }
+  .lang-toggle button{
+    font-family:'EB Garamond', serif; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    padding:6px 16px; border:none; background:transparent; color:var(--ink-soft); cursor:pointer;
+    transition: all 0.15s ease;
+  }
+  .lang-toggle button.active{ background:var(--clay); color:var(--cream); }
+  .lang-toggle button:not(.active):hover{ background:var(--cream-deep); }
 
   /* ---------- Sticky section nav ---------- */
   .nav{
@@ -487,9 +497,9 @@
     <div class="gate-card">
       <div class="eyebrow">08 . 28 . 26</div>
       <h1>Janan <span class="amp">&amp;</span> Juan</h1>
-      <p class="sub">This page is private. Enter the password to continue.</p>
+      <p class="sub" data-i18n="gateSub">This page is private. Enter the password to continue.</p>
       <input type="password" id="gate-input" placeholder="Password" autocomplete="off">
-      <button id="gate-submit">Enter</button>
+      <button id="gate-submit" data-i18n="gateEnter">Enter</button>
       <div class="gate-error" id="gate-error"></div>
     </div>
   </div>
@@ -507,31 +517,35 @@
   <div class="masthead">
     <div class="eyebrow">08 . 28 . 26</div>
     <h1>Janan <span class="amp">&amp;</span> Juan</h1>
-    <div class="doctitle">Wedding Production Book</div>
-    <div class="meta">Palacio de Galiana · Toledo, Spain</div>
+    <div class="doctitle" data-i18n="doctitle">Wedding Production Book</div>
+    <div class="meta" data-es="Palacio de Galiana · Toledo, España">Palacio de Galiana · Toledo, Spain</div>
+    <div class="lang-toggle">
+      <button type="button" id="langEn" class="active">EN</button>
+      <button type="button" id="langEs">ES</button>
+    </div>
   </div>
 
   <nav class="nav" id="sectionNav">
-    <a href="#page-overview" data-page="overview" class="nav-hidden">Overview</a>
-    <a href="#page-agenda" data-page="agenda" class="nav-hidden">Agenda</a>
-    <a href="#page-visual" data-page="visual">Visual Expectations</a>
+    <a href="#page-overview" data-page="overview" class="nav-hidden" data-i18n="navOverview">Overview</a>
+    <a href="#page-agenda" data-page="agenda" class="nav-hidden" data-i18n="navAgenda">Agenda</a>
+    <a href="#page-visual" data-page="visual" data-i18n="navVisual">Visual Expectations</a>
     <div class="nav-dropdown nav-hidden" id="eventsDropdown">
-      <button class="nav-dropdown-trigger" id="eventsTrigger" type="button">Events ▾</button>
+      <button class="nav-dropdown-trigger" id="eventsTrigger" type="button"><span data-i18n="navEvents">Events</span> ▾</button>
     </div>
-    <a href="#page-contacts" data-page="contacts" class="nav-hidden">Contact Information</a>
-    <a href="#page-todo" data-page="todo" class="nav-hidden">J&amp;J To-Do</a>
+    <a href="#page-contacts" data-page="contacts" class="nav-hidden" data-i18n="navContacts">Contact Information</a>
+    <a href="#page-todo" data-page="todo" class="nav-hidden" data-i18n="navTodo">J&amp;J To-Do</a>
   </nav>
 
   <!-- Rendered outside .nav (position:fixed, JS-positioned) because .nav's
        backdrop-filter creates a containing block for fixed descendants,
        which broke viewport-relative positioning when nested inside it. -->
   <div class="nav-dropdown-panel" id="eventsPanel">
-    <a href="#page-welcome" data-page="welcome">Welcome Reception</a>
-    <a href="#page-ceremony" data-page="ceremony">Ceremony</a>
-    <a href="#page-cocktail" data-page="cocktail">Cocktail Hour</a>
-    <a href="#page-dinner" data-page="dinner">Dinner</a>
-    <a href="#page-celebration" data-page="celebration">Celebration</a>
-    <a href="#page-return" data-page="return">Return</a>
+    <a href="#page-welcome" data-page="welcome" data-i18n="navWelcome">Welcome Reception</a>
+    <a href="#page-ceremony" data-page="ceremony" data-i18n="navCeremony">Ceremony</a>
+    <a href="#page-cocktail" data-page="cocktail" data-i18n="navCocktail">Cocktail Hour</a>
+    <a href="#page-dinner" data-page="dinner" data-i18n="navDinner">Dinner</a>
+    <a href="#page-celebration" data-page="celebration" data-i18n="navCelebration">Celebration</a>
+    <a href="#page-return" data-page="return" data-i18n="navReturn">Return</a>
   </div>
 
   <div class="wrap">
@@ -539,21 +553,21 @@
     <!-- ============ OVERVIEW ============ -->
     <section class="page" id="overview">
       <div class="section-head">
-        <h2>Overview</h2>
-        <div class="time">Open items across the day</div>
+        <h2 data-i18n="navOverview">Overview</h2>
+        <div class="time" data-es="Asuntos pendientes de todo el día">Open items across the day</div>
       </div>
       <div class="open-panel">
-        <h3>Open Items to Confirm</h3>
+        <h3 data-es="Asuntos Pendientes por Confirmar">Open Items to Confirm</h3>
         <ul>
-          <li>Welcome table — do we need to bring a basket for the sun umbrella?</li>
-          <li>Ceremony — decide on aisle runner (in progress)</li>
-          <li>Ceremony — determine placement for the 2 violin players</li>
-          <li>Cocktail hour — confirm Flamenco band placement (up with guests on the second level, not at the bottom)</li>
-          <li>Dinner — seating chart mirror: can the venue provide one, or do we need to source a vendor?</li>
-          <li>Celebration — LED sign wording conflict: earlier notes say "Janan and Juan", newer notes say "J and J" — confirm exact text</li>
-          <li>Need reference pictures of ceremony chairs</li>
-          <li>Need reference pictures of reception chairs</li>
-          <li>Need reference pictures of table covers</li>
+          <li data-es="Mesa de bienvenida — ¿necesitamos traer una canasta para la sombrilla?">Welcome table — do we need to bring a basket for the sun umbrella?</li>
+          <li data-es="Ceremonia — decidir sobre el camino de pasillo (en proceso)">Ceremony — decide on aisle runner (in progress)</li>
+          <li data-es="Ceremonia — determinar la ubicación de los 2 violinistas">Ceremony — determine placement for the 2 violin players</li>
+          <li data-es="Hora del cóctel — confirmar la ubicación de la banda de flamenco (arriba con los invitados en el segundo nivel, no abajo)">Cocktail hour — confirm Flamenco band placement (up with guests on the second level, not at the bottom)</li>
+          <li data-es="Cena — espejo del plano de mesas: ¿puede proporcionarlo el lugar, o necesitamos buscar un proveedor?">Dinner — seating chart mirror: can the venue provide one, or do we need to source a vendor?</li>
+          <li data-es='Celebración — conflicto en el texto del letrero LED: las notas anteriores dicen "Janan and Juan", las más recientes dicen "J and J" — confirmar el texto exacto'>Celebration — LED sign wording conflict: earlier notes say "Janan and Juan", newer notes say "J and J" — confirm exact text</li>
+          <li data-es="Se necesitan fotos de referencia de las sillas de la ceremonia">Need reference pictures of ceremony chairs</li>
+          <li data-es="Se necesitan fotos de referencia de las sillas de la recepción">Need reference pictures of reception chairs</li>
+          <li data-es="Se necesitan fotos de referencia de los manteles">Need reference pictures of table covers</li>
         </ul>
       </div>
     </section>
@@ -561,28 +575,28 @@
     <!-- ============ AGENDA ============ -->
     <section class="page" id="agenda">
       <div class="section-head">
-        <h2>Agenda</h2>
-        <div class="time">Master timeline — Palacio de Galiana · August 28, 2026</div>
+        <h2 data-i18n="navAgenda">Agenda</h2>
+        <div class="time" data-es="Cronología maestra — Palacio de Galiana · 28 de agosto de 2026">Master timeline — Palacio de Galiana · August 28, 2026</div>
       </div>
 
       <div class="page-body">
         <div class="block agenda-item">
           <div class="agenda-head">
             <div class="agenda-time">6:00 – 6:30 PM</div>
-            <div class="agenda-title">Welcome Reception</div>
+            <div class="agenda-title" data-i18n="navWelcome">Welcome Reception</div>
           </div>
           <div class="agenda-sub">
-            <h4>Purpose</h4>
-            <p>Allow guests to arrive comfortably, enjoy refreshments, and create a beautiful first impression before the ceremony.</p>
+            <h4 data-es="Propósito">Purpose</h4>
+            <p data-es="Permitir que los invitados lleguen cómodamente, disfruten de refrescos y se lleven una hermosa primera impresión antes de la ceremonia.">Allow guests to arrive comfortably, enjoy refreshments, and create a beautiful first impression before the ceremony.</p>
           </div>
           <div class="agenda-sub">
-            <h4>Guest Experience</h4>
+            <h4 data-i18n="hGuestExperience">Guest Experience</h4>
             <ul class="plain">
-              <li>Lemonade stand</li>
-              <li>Decorative mirror with custom artwork</li>
-              <li>Beautiful floral display</li>
-              <li>Basket of sun umbrellas/fans</li>
-              <li>Photographer &amp; videographer capturing arrivals</li>
+              <li data-es="Puesto de limonada">Lemonade stand</li>
+              <li data-es="Espejo decorativo con diseño personalizado">Decorative mirror with custom artwork</li>
+              <li data-es="Hermoso despliegue floral">Beautiful floral display</li>
+              <li data-es="Canasta de sombrillas/abanicos">Basket of sun umbrellas/fans</li>
+              <li data-es="Fotógrafo y videógrafo capturando las llegadas">Photographer &amp; videographer capturing arrivals</li>
             </ul>
           </div>
         </div>
@@ -590,41 +604,41 @@
         <div class="block agenda-item">
           <div class="agenda-head">
             <div class="agenda-time">6:30 – 7:00 PM</div>
-            <div class="agenda-title">Ceremony</div>
+            <div class="agenda-title" data-i18n="navCeremony">Ceremony</div>
           </div>
           <div class="agenda-sub">
-            <h4>Highlights</h4>
+            <h4 data-es="Momentos Destacados">Highlights</h4>
             <ul class="plain">
-              <li>Live violin &amp; cello</li>
-              <li>Beautiful floral arrangements</li>
-              <li>Amino arrives in a toy car to deliver the rings</li>
-              <li>Four flower girls</li>
+              <li data-es="Violín y violonchelo en vivo">Live violin &amp; cello</li>
+              <li data-es="Hermosos arreglos florales">Beautiful floral arrangements</li>
+              <li data-es="Amino llega en un auto de juguete para entregar los anillos">Amino arrives in a toy car to deliver the rings</li>
+              <li data-es="Cuatro niñas de las flores">Four flower girls</li>
             </ul>
           </div>
           <div class="agenda-sub">
-            <h4>Processional Order</h4>
+            <h4 data-es="Orden Procesional">Processional Order</h4>
             <ol class="numbered">
-              <li>Groom (Juan)</li>
-              <li>Groom's mother and father</li>
-              <li>Groom's sister &amp; oldest nephew</li>
-              <li>Youngest nephew &amp; niece</li>
-              <li>Bride's first brother &amp; wife</li>
-              <li>Bride's second brother &amp; wife</li>
-              <li>Bride's sister &amp; husband</li>
-              <li>Bride's mother (and potentially best friend)</li>
-              <li>Bride &amp; father</li>
-              <li>Four flower girls</li>
+              <li data-es="Novio (Juan)">Groom (Juan)</li>
+              <li data-es="Madre y padre del novio">Groom's mother and father</li>
+              <li data-es="Hermana del novio y sobrino mayor">Groom's sister &amp; oldest nephew</li>
+              <li data-es="Sobrino y sobrina menores">Youngest nephew &amp; niece</li>
+              <li data-es="Primer hermano de la novia y su esposa">Bride's first brother &amp; wife</li>
+              <li data-es="Segundo hermano de la novia y su esposa">Bride's second brother &amp; wife</li>
+              <li data-es="Hermana de la novia y su esposo">Bride's sister &amp; husband</li>
+              <li data-es="Madre de la novia (y posiblemente su mejor amiga)">Bride's mother (and potentially best friend)</li>
+              <li data-es="Novia y su padre">Bride &amp; father</li>
+              <li data-es="Cuatro niñas de las flores">Four flower girls</li>
             </ol>
           </div>
           <div class="agenda-sub">
-            <h4>Ceremony Details</h4>
+            <h4 data-es="Detalles de la Ceremonia">Ceremony Details</h4>
             <ul class="plain">
-              <li>Wireless microphones</li>
-              <li>Guest seating</li>
-              <li>Sun fans/umbrellas available</li>
-              <li>Flowers</li>
-              <li>Photographer</li>
-              <li>Videographer</li>
+              <li data-es="Micrófonos inalámbricos">Wireless microphones</li>
+              <li data-es="Asientos para invitados">Guest seating</li>
+              <li data-es="Abanicos/sombrillas disponibles">Sun fans/umbrellas available</li>
+              <li data-es="Flores">Flowers</li>
+              <li data-es="Fotógrafo">Photographer</li>
+              <li data-es="Videógrafo">Videographer</li>
             </ul>
           </div>
         </div>
@@ -632,21 +646,21 @@
         <div class="block agenda-item">
           <div class="agenda-head">
             <div class="agenda-time">7:00 – 8:00 PM</div>
-            <div class="agenda-title">Cocktail Hour</div>
+            <div class="agenda-title" data-i18n="navCocktail">Cocktail Hour</div>
           </div>
           <div class="agenda-sub">
-            <h4>First 30 Minutes</h4>
+            <h4 data-es="Primeros 30 Minutos">First 30 Minutes</h4>
             <ul class="plain">
-              <li>Bride &amp; groom taking portraits</li>
-              <li>Guests enjoy drinks and appetizers</li>
-              <li>Live flamenco band performance</li>
+              <li data-es="Novios tomándose fotos">Bride &amp; groom taking portraits</li>
+              <li data-es="Los invitados disfrutan de bebidas y aperitivos">Guests enjoy drinks and appetizers</li>
+              <li data-es="Actuación en vivo de la banda de flamenco">Live flamenco band performance</li>
             </ul>
           </div>
           <div class="agenda-sub">
-            <h4>Second 30 Minutes</h4>
+            <h4 data-es="Segundos 30 Minutos">Second 30 Minutes</h4>
             <ul class="plain">
-              <li>Bride &amp; groom join guests</li>
-              <li>White napkin twirl celebration (napkins provided)</li>
+              <li data-es="Los novios se unen a los invitados">Bride &amp; groom join guests</li>
+              <li data-es="Celebración con giro de servilletas blancas (servilletas provistas)">White napkin twirl celebration (napkins provided)</li>
             </ul>
           </div>
         </div>
@@ -654,18 +668,18 @@
         <div class="block agenda-item">
           <div class="agenda-head">
             <div class="agenda-time">8:15 – 10:15 PM</div>
-            <div class="agenda-title">Dinner Reception</div>
+            <div class="agenda-title" data-es="Recepción de Cena">Dinner Reception</div>
           </div>
           <div class="agenda-sub">
-            <h4>Guest Experience</h4>
-            <p>Elegant candlelit dinner with beautiful floral centerpieces.</p>
+            <h4 data-i18n="hGuestExperience">Guest Experience</h4>
+            <p data-es="Elegante cena a la luz de las velas con hermosos centros de mesa florales.">Elegant candlelit dinner with beautiful floral centerpieces.</p>
           </div>
           <div class="agenda-sub">
-            <h4>Program</h4>
+            <h4 data-es="Programa">Program</h4>
             <ul class="plain">
-              <li>Welcome</li>
-              <li>Dinner service</li>
-              <li>Speeches</li>
+              <li data-es="Bienvenida">Welcome</li>
+              <li data-es="Servicio de cena">Dinner service</li>
+              <li data-es="Discursos">Speeches</li>
             </ul>
           </div>
         </div>
@@ -673,48 +687,48 @@
         <div class="block agenda-item">
           <div class="agenda-head">
             <div class="agenda-time">10:15 PM –</div>
-            <div class="agenda-title">Party</div>
+            <div class="agenda-title" data-es="Fiesta">Party</div>
           </div>
           <div class="agenda-sub">
-            <h4>Grand Entrance</h4>
-            <p>Kafta tradition</p>
+            <h4 data-es="Gran Entrada">Grand Entrance</h4>
+            <p data-es="Tradición de la Kafta">Kafta tradition</p>
           </div>
           <div class="agenda-sub">
-            <h4>Special Dances</h4>
+            <h4 data-es="Bailes Especiales">Special Dances</h4>
             <ul class="plain">
-              <li>First dance</li>
-              <li>Father–daughter dance</li>
-              <li>Mother–son dance</li>
+              <li data-es="Primer baile">First dance</li>
+              <li data-es="Baile de padre e hija">Father–daughter dance</li>
+              <li data-es="Baile de madre e hijo">Mother–son dance</li>
             </ul>
           </div>
           <div class="agenda-sub">
-            <h4>Bride Outfit Change</h4>
+            <h4 data-es="Cambio de Vestido de la Novia">Bride Outfit Change</h4>
             <ul class="plain">
-              <li>Live violin performance while the bride changes</li>
-              <li>Transition to DJ set</li>
+              <li data-es="Actuación de violín en vivo mientras la novia se cambia">Live violin performance while the bride changes</li>
+              <li data-es="Transición al set del DJ">Transition to DJ set</li>
             </ul>
           </div>
           <div class="agenda-sub">
-            <h4>Entertainment</h4>
+            <h4 data-i18n="hEntertainment">Entertainment</h4>
             <ul class="plain">
               <li>DJ</li>
-              <li>Belly dancer</li>
-              <li>Sparkler or LED tube show</li>
+              <li data-es="Bailarina de danza del vientre">Belly dancer</li>
+              <li data-es="Espectáculo de bengalas o tubos LED">Sparkler or LED tube show</li>
             </ul>
           </div>
           <div class="agenda-sub">
-            <h4>Production</h4>
+            <h4 data-es="Producción">Production</h4>
             <ul class="plain">
-              <li>Professional lighting</li>
-              <li>Smoke effects</li>
-              <li>Disco ball</li>
+              <li data-es="Iluminación profesional">Professional lighting</li>
+              <li data-es="Efectos de humo">Smoke effects</li>
+              <li data-es="Bola de discoteca">Disco ball</li>
             </ul>
           </div>
           <div class="agenda-sub">
-            <h4>Guest Comfort</h4>
+            <h4 data-es="Comodidad de los Invitados">Guest Comfort</h4>
             <ul class="plain">
-              <li>Reserved seating/tables for elderly guests</li>
-              <li>Late-night snacks and light food</li>
+              <li data-es="Asientos/mesas reservadas para invitados mayores">Reserved seating/tables for elderly guests</li>
+              <li data-es="Bocadillos y comida ligera nocturna">Late-night snacks and light food</li>
             </ul>
           </div>
         </div>
@@ -722,15 +736,15 @@
         <div class="block agenda-item">
           <div class="agenda-head">
             <div class="agenda-time">1:00 – 3:00 AM</div>
-            <div class="agenda-title">Transportation</div>
+            <div class="agenda-title" data-es="Transporte">Transportation</div>
           </div>
           <div class="agenda-sub">
             <ul class="plain">
-              <li>First departure: 1:00 AM</li>
-              <li>Final departure: 3:00 AM</li>
+              <li data-es="Primera salida: 1:00 AM">First departure: 1:00 AM</li>
+              <li data-es="Última salida: 3:00 AM">Final departure: 3:00 AM</li>
             </ul>
           </div>
-          <div class="openq"><span class="tag">Open</span>Departure time conflict — this master timeline says first departure is 1:00 AM, but the Return page says 12:00 AM. Confirm which is correct.</div>
+          <div class="openq"><span class="tag" data-i18n="tagOpen">Open</span><span data-es="Conflicto en la hora de salida — esta cronología maestra dice que la primera salida es a la 1:00 AM, pero la página de Regreso dice 12:00 AM. Confirmar cuál es correcta.">Departure time conflict — this master timeline says first departure is 1:00 AM, but the Return page says 12:00 AM. Confirm which is correct.</span></div>
         </div>
       </div>
     </section>
@@ -738,93 +752,93 @@
     <!-- ============ VISUAL EXPECTATIONS ============ -->
     <section class="page active" id="visual">
       <div class="section-head">
-        <h2>Visual Expectations</h2>
-        <div class="time">Design language &amp; visual requests, moment by moment</div>
+        <h2 data-i18n="navVisual">Visual Expectations</h2>
+        <div class="time" data-es="Lenguaje de diseño y solicitudes visuales, momento a momento">Design language &amp; visual requests, moment by moment</div>
       </div>
 
       <div class="block">
-        <h3>Design Language</h3>
-        <p>One consistent, off-white / neutral floral palette runs through the entire day — welcome, ceremony, cocktail hour, and dinner all draw from the same tone of flowers. Nothing dark or mismatched; every arrangement should read as part of the same family.</p>
+        <h3 data-es="Lenguaje de Diseño">Design Language</h3>
+        <p data-es="Una paleta floral consistente, en blanco roto / neutro, recorre todo el día — la bienvenida, la ceremonia, la hora del cóctel y la cena usan el mismo tono de flores. Nada oscuro ni combinaciones dispares; cada arreglo debe verse como parte de la misma familia.">One consistent, off-white / neutral floral palette runs through the entire day — welcome, ceremony, cocktail hour, and dinner all draw from the same tone of flowers. Nothing dark or mismatched; every arrangement should read as part of the same family.</p>
       </div>
 
       <div class="page-body single-column">
         <div class="block">
-          <h3>Welcome Reception</h3>
+          <h3 data-i18n="navWelcome">Welcome Reception</h3>
           <ul class="plain">
-            <li>Mirror with the custom welcome messaging/design</li>
-            <li>Off-white/neutral flower placement, consistent with the rest of the wedding</li>
-            <li>Basket for the umbrellas — confirm whether we need to bring one</li>
-            <li>Janan &amp; Juan to bring the sun umbrellas for the basket</li>
+            <li data-es="Espejo con el mensaje/diseño de bienvenida personalizado">Mirror with the custom welcome messaging/design</li>
+            <li data-es="Colocación de flores en blanco roto/neutro, consistente con el resto de la boda">Off-white/neutral flower placement, consistent with the rest of the wedding</li>
+            <li data-es="Canasta para las sombrillas — confirmar si necesitamos traer una">Basket for the umbrellas — confirm whether we need to bring one</li>
+            <li data-es="Janan y Juan traerán las sombrillas para la canasta">Janan &amp; Juan to bring the sun umbrellas for the basket</li>
           </ul>
           <div class="gallery">
-            <figure><img src="assets/inspo/inspo-01.jpg" alt="Welcome table inspiration"><figcaption>Welcome table inspiration — drinks &amp; sun umbrella in a basket</figcaption></figure>
-            <figure><img src="assets/inspo/inspo-02.jpg" alt="Mirror welcome message mockup"><figcaption>Mirror welcome message mockup</figcaption></figure>
+            <figure><img src="assets/inspo/inspo-01.jpg" alt="Welcome table inspiration"><figcaption data-es="Inspiración para la mesa de bienvenida — bebidas y sombrilla en una canasta">Welcome table inspiration — drinks &amp; sun umbrella in a basket</figcaption></figure>
+            <figure><img src="assets/inspo/inspo-02.jpg" alt="Mirror welcome message mockup"><figcaption data-es="Maqueta del mensaje de bienvenida del espejo">Mirror welcome message mockup</figcaption></figure>
           </div>
         </div>
 
         <div class="block">
-          <h3>Ceremony</h3>
+          <h3 data-i18n="navCeremony">Ceremony</h3>
           <ul class="plain">
-            <li>No chairs for the couple — Juan, Janan &amp; officiant Nabeel stand; will need a mic</li>
-            <li>Flower style as circled in the reference photo — off-white/neutral, consistent with the rest</li>
-            <li>Aisle flowers</li>
-            <li>Rose petals in baskets for the four flower girls</li>
-            <li>Bridal bouquet as shown in the reference photo</li>
+            <li data-es="Sin sillas para los novios — Juan, Janan y el oficiante Nabeel estarán de pie; se necesitará un micrófono">No chairs for the couple — Juan, Janan &amp; officiant Nabeel stand; will need a mic</li>
+            <li data-es="Estilo floral marcado con un círculo en la foto de referencia — blanco roto/neutro, consistente con el resto">Flower style as circled in the reference photo — off-white/neutral, consistent with the rest</li>
+            <li data-es="Flores del pasillo">Aisle flowers</li>
+            <li data-es="Pétalos de rosa en canastas para las cuatro niñas de las flores">Rose petals in baskets for the four flower girls</li>
+            <li data-es="Ramo de novia como se muestra en la foto de referencia">Bridal bouquet as shown in the reference photo</li>
           </ul>
           <div class="gallery">
-            <figure><img src="assets/inspo/inspo-04.jpg" alt="Ceremony arch floral style, circled"><figcaption>Ceremony arch floral style — circled area shows the look requested</figcaption></figure>
-            <figure><img src="assets/inspo/inspo-05.jpg" alt="Bridal bouquet reference"><figcaption>Bridal bouquet reference</figcaption></figure>
-            <figure><img src="assets/inspo/ceremony-aisle-petals.jpg" alt="Aisle with rose petals and candles"><figcaption>Aisle inspiration — rose petals with candle hurricanes along the chairs</figcaption></figure>
+            <figure><img src="assets/inspo/inspo-04.jpg" alt="Ceremony arch floral style, circled"><figcaption data-es="Estilo floral del arco ceremonial — el área marcada muestra el look solicitado">Ceremony arch floral style — circled area shows the look requested</figcaption></figure>
+            <figure><img src="assets/inspo/inspo-05.jpg" alt="Bridal bouquet reference"><figcaption data-es="Referencia del ramo de novia">Bridal bouquet reference</figcaption></figure>
+            <figure><img src="assets/inspo/ceremony-aisle-petals.jpg" alt="Aisle with rose petals and candles"><figcaption data-es="Inspiración para el pasillo — pétalos de rosa con faroles de vela junto a las sillas">Aisle inspiration — rose petals with candle hurricanes along the chairs</figcaption></figure>
           </div>
-          <div class="openq"><span class="tag">Notes</span>Placement for the 2 violin players still needs to be found.</div>
+          <div class="openq"><span class="tag" data-i18n="tagNotes">Notes</span><span data-es="Aún falta encontrar la ubicación de los 2 violinistas.">Placement for the 2 violin players still needs to be found.</span></div>
         </div>
 
         <div class="block">
-          <h3>Cocktail Hour</h3>
+          <h3 data-i18n="navCocktail">Cocktail Hour</h3>
           <ul class="plain">
-            <li>Off-white, neutral flowers on tables — consistent with the rest of the flowers</li>
-            <li>White fabric napkins (Janan &amp; Juan to bring) for the entrance twirl moment</li>
+            <li data-es="Flores en blanco roto y neutro en las mesas — consistentes con el resto de las flores">Off-white, neutral flowers on tables — consistent with the rest of the flowers</li>
+            <li data-es="Servilletas de tela blancas (las traerán Janan y Juan) para el momento de giro en la entrada">White fabric napkins (Janan &amp; Juan to bring) for the entrance twirl moment</li>
           </ul>
-          <div class="openq"><span class="tag">Notes</span>Flamenco band placement — needs to be visible, up with guests on the second level, not at the bottom.</div>
+          <div class="openq"><span class="tag" data-i18n="tagNotes">Notes</span><span data-es="Ubicación de la banda de flamenco — debe estar visible, arriba con los invitados en el segundo nivel, no abajo.">Flamenco band placement — needs to be visible, up with guests on the second level, not at the bottom.</span></div>
         </div>
 
         <div class="block">
-          <h3>Dinner</h3>
+          <h3 data-i18n="navDinner">Dinner</h3>
           <ul class="plain">
-            <li>Mirror styled with flowers &amp; candles at the base; guest seating arrangement displayed on the mirror — the seating arrangement needs to be printed</li>
-            <li>Name tags (Janan &amp; Juan to bring) placed on plates together with the white calla flower — wedding team's responsibility to place them</li>
-            <li>Small cake + champagne tower moment at the end of dinner, on a small table with a cover matching the other dinner tables</li>
-            <li>Curved tables, draped tablecloth look</li>
-            <li>Heavy candle presence — the candle look matters as much as the florals</li>
-            <li>Will need a mic for speeches; music will also be playing</li>
+            <li data-es="Espejo decorado con flores y velas en la base; el plano de mesas de los invitados se muestra en el espejo — el plano debe imprimirse">Mirror styled with flowers &amp; candles at the base; guest seating arrangement displayed on the mirror — the seating arrangement needs to be printed</li>
+            <li data-es="Tarjetas con nombre (las traerán Janan y Juan) colocadas en los platos junto con la flor de cala blanca — es responsabilidad del equipo de la boda colocarlas">Name tags (Janan &amp; Juan to bring) placed on plates together with the white calla flower — wedding team's responsibility to place them</li>
+            <li data-es="Pastel pequeño + torre de champán al final de la cena, sobre una mesa pequeña con un mantel a juego con las demás mesas">Small cake + champagne tower moment at the end of dinner, on a small table with a cover matching the other dinner tables</li>
+            <li data-es="Mesas curvas, mantelería con look drapeado">Curved tables, draped tablecloth look</li>
+            <li data-es="Fuerte presencia de velas — el look de las velas importa tanto como el de las flores">Heavy candle presence — the candle look matters as much as the florals</li>
+            <li data-es="Se necesitará un micrófono para los discursos; también habrá música">Will need a mic for speeches; music will also be playing</li>
           </ul>
           <div class="gallery">
-            <figure><img src="assets/inspo/dinner-seating-mirror.jpg" alt="Seating chart mirror with flowers and candles"><figcaption>Seating chart mirror styling — flowers &amp; candles at the base</figcaption></figure>
-            <figure><img src="assets/inspo/cake-champagne-moment.jpg" alt="Cake and champagne tower moment, real event"><figcaption>Cake-cutting + champagne tower moment, string lights above</figcaption></figure>
-            <figure><img src="assets/inspo/dinner-candles-sunset.jpg" alt="Long candlelit table at sunset"><figcaption>Long candlelit table at sunset — heavy on candles, light on florals. We want callas down the table, as shown in the next photo.</figcaption></figure>
-            <figure><img src="assets/inspo/dinner-candles-callas.jpg" alt="Hurricane candles with single-stem callas"><figcaption>Hurricane candles with single-stem callas down the table</figcaption></figure>
-            <figure><img src="assets/inspo/dinner-candles-runner.jpg" alt="Draped tablecloth reference"><figcaption>Draped tablecloth look — reference for the table cover style, not the candles</figcaption></figure>
-            <figure><img src="assets/inspo/dinner-candles-crossback-chairs.jpg" alt="All-candle reception table with cross-back chairs"><figcaption>All-candle tablescape at dusk — cross-back chair reference</figcaption></figure>
-            <figure><img src="assets/inspo/curved-table-bentwood-chairs.jpg" alt="Curved table with bentwood chairs"><figcaption>Curved table shape reference, with bentwood chairs</figcaption></figure>
-            <figure><img src="assets/inspo/curved-table-ghost-chairs.jpg" alt="Curved table with clear ghost chairs"><figcaption>Curved table reference with clear ghost chairs, blush &amp; white florals</figcaption></figure>
-            <figure><img src="assets/inspo/round-tables-floral-garland.jpg" alt="S-curved row of round tables linked by floral garland"><figcaption>S-curved run of round tables linked by a floral garland, cross-back chairs</figcaption></figure>
+            <figure><img src="assets/inspo/dinner-seating-mirror.jpg" alt="Seating chart mirror with flowers and candles"><figcaption data-es="Estilo del espejo del plano de mesas — flores y velas en la base">Seating chart mirror styling — flowers &amp; candles at the base</figcaption></figure>
+            <figure><img src="assets/inspo/cake-champagne-moment.jpg" alt="Cake and champagne tower moment, real event"><figcaption data-es="Momento de corte de pastel + torre de champán, con luces colgantes arriba">Cake-cutting + champagne tower moment, string lights above</figcaption></figure>
+            <figure><img src="assets/inspo/dinner-candles-sunset.jpg" alt="Long candlelit table at sunset"><figcaption data-es="Mesa larga iluminada con velas al atardecer — mucha vela, poca flor. Queremos calas a lo largo de la mesa, como se muestra en la siguiente foto.">Long candlelit table at sunset — heavy on candles, light on florals. We want callas down the table, as shown in the next photo.</figcaption></figure>
+            <figure><img src="assets/inspo/dinner-candles-callas.jpg" alt="Hurricane candles with single-stem callas"><figcaption data-es="Velas en faroles con calas de tallo individual a lo largo de la mesa">Hurricane candles with single-stem callas down the table</figcaption></figure>
+            <figure><img src="assets/inspo/dinner-candles-runner.jpg" alt="Draped tablecloth reference"><figcaption data-es="Look de mantelería drapeada — referencia para el estilo del mantel, no para las velas">Draped tablecloth look — reference for the table cover style, not the candles</figcaption></figure>
+            <figure><img src="assets/inspo/dinner-candles-crossback-chairs.jpg" alt="All-candle reception table with cross-back chairs"><figcaption data-es="Ambientación de mesa solo con velas al anochecer — referencia de silla cross-back">All-candle tablescape at dusk — cross-back chair reference</figcaption></figure>
+            <figure><img src="assets/inspo/curved-table-bentwood-chairs.jpg" alt="Curved table with bentwood chairs"><figcaption data-es="Referencia de mesa curva, con sillas de madera curvada">Curved table shape reference, with bentwood chairs</figcaption></figure>
+            <figure><img src="assets/inspo/curved-table-ghost-chairs.jpg" alt="Curved table with clear ghost chairs"><figcaption data-es='Referencia de mesa curva con sillas transparentes tipo "ghost", flores blancas y rosa pálido'>Curved table reference with clear ghost chairs, blush &amp; white florals</figcaption></figure>
+            <figure><img src="assets/inspo/round-tables-floral-garland.jpg" alt="S-curved row of round tables linked by floral garland"><figcaption data-es='Fila de mesas redondas en forma de "S" unidas por una guirnalda floral, sillas cross-back'>S-curved run of round tables linked by a floral garland, cross-back chairs</figcaption></figure>
           </div>
-          <div class="openq"><span class="tag">Notes</span>Still need to find the right spot for the seating-chart mirror during dinner.</div>
+          <div class="openq"><span class="tag" data-i18n="tagNotes">Notes</span><span data-es="Aún falta encontrar el lugar adecuado para el espejo del plano de mesas durante la cena.">Still need to find the right spot for the seating-chart mirror during dinner.</span></div>
         </div>
 
         <div class="block">
-          <h3>Reception / Party</h3>
+          <h3 data-es="Recepción / Fiesta">Reception / Party</h3>
           <ul class="plain">
-            <li>Soft white lighting</li>
-            <li>Sparkle/pinspot light wash + disco ball over the dance floor for a warm, glittery first-dance moment</li>
-            <li>Smoke machine</li>
-            <li>Low-seated &amp; high-top tables near the dance floor, to keep the group together (small guest count)</li>
-            <li>LED neon sign reading "J and J", placed as in the reference photo</li>
-            <li>Flowers near the LED sign to match the rest of the theme</li>
-            <li>Sparklers for the belly dancer's last song (Janan &amp; Juan can bring if needed)</li>
+            <li data-es="Iluminación blanca suave">Soft white lighting</li>
+            <li data-es="Baño de luz brillante/pinspot + bola de discoteca sobre la pista de baile para un momento de primer baile cálido y brillante">Sparkle/pinspot light wash + disco ball over the dance floor for a warm, glittery first-dance moment</li>
+            <li data-es="Máquina de humo">Smoke machine</li>
+            <li data-es="Mesas bajas y altas cerca de la pista de baile, para mantener al grupo unido (grupo reducido de invitados)">Low-seated &amp; high-top tables near the dance floor, to keep the group together (small guest count)</li>
+            <li data-es='Letrero de neón LED que dice "J and J", colocado como en la foto de referencia'>LED neon sign reading "J and J", placed as in the reference photo</li>
+            <li data-es="Flores cerca del letrero LED a juego con el resto de la temática">Flowers near the LED sign to match the rest of the theme</li>
+            <li data-es="Bengalas para la última canción de la bailarina de danza del vientre (Janan y Juan pueden traerlas si es necesario)">Sparklers for the belly dancer's last song (Janan &amp; Juan can bring if needed)</li>
           </ul>
           <div class="gallery">
-            <figure><img src="assets/inspo/celebration-led-sign-venue.jpg" alt="LED sign placement at the venue"><figcaption>LED sign placement reference — actual venue space</figcaption></figure>
+            <figure><img src="assets/inspo/celebration-led-sign-venue.jpg" alt="LED sign placement at the venue"><figcaption data-es="Referencia de ubicación del letrero LED — espacio real del lugar">LED sign placement reference — actual venue space</figcaption></figure>
           </div>
         </div>
       </div>
@@ -833,83 +847,83 @@
     <!-- ============ WELCOME RECEPTION ============ -->
     <section class="page" id="welcome">
       <div class="section-head">
-        <h2>Welcome Reception</h2>
+        <h2 data-i18n="navWelcome">Welcome Reception</h2>
         <div class="time">6:00 PM – 6:30 PM</div>
       </div>
 
       <div class="page-body">
       <div class="block">
-        <h3>Guest Experience</h3>
+        <h3 data-i18n="hGuestExperience">Guest Experience</h3>
         <ul class="plain">
-          <li>Classical violin &amp; cello</li>
-          <li>Mirror welcome display</li>
-          <li>Floral welcome table</li>
-          <li>Welcome cocktails</li>
+          <li data-es="Violín y violonchelo clásico">Classical violin &amp; cello</li>
+          <li data-es="Espejo de bienvenida">Mirror welcome display</li>
+          <li data-es="Mesa de bienvenida floral">Floral welcome table</li>
+          <li data-es="Cócteles de bienvenida">Welcome cocktails</li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Timeline</h3>
-        <div class="timeline-row"><div class="t">6:00 PM</div><div class="e">Guests arrive</div></div>
-        <div class="timeline-row"><div class="t"></div><div class="e">Violin &amp; cello begin</div></div>
-        <div class="timeline-row"><div class="t"></div><div class="e">Mirror available</div></div>
-        <div class="timeline-row"><div class="t">6:30 PM</div><div class="e">Reception concludes</div></div>
+        <h3 data-i18n="hTimeline">Timeline</h3>
+        <div class="timeline-row"><div class="t">6:00 PM</div><div class="e" data-es="Llegada de los invitados">Guests arrive</div></div>
+        <div class="timeline-row"><div class="t"></div><div class="e" data-es="Comienza el violín y violonchelo">Violin &amp; cello begin</div></div>
+        <div class="timeline-row"><div class="t"></div><div class="e" data-es="Espejo disponible">Mirror available</div></div>
+        <div class="timeline-row"><div class="t">6:30 PM</div><div class="e" data-es="Finaliza la recepción">Reception concludes</div></div>
       </div>
 
       <div class="block">
-        <h3>Design &amp; Décor</h3>
+        <h3 data-i18n="hDesignDecor">Design &amp; Décor</h3>
         <ul class="plain">
-          <li>Mirror sign</li><li>Flowers</li><li>Candles</li>
-          <li>Welcome table styled with drinks &amp; a sun umbrella in a basket</li>
-          <li>Mirror will display a welcome message / monogram (see mockup)</li>
+          <li data-es="Letrero del espejo">Mirror sign</li><li data-es="Flores">Flowers</li><li data-es="Velas">Candles</li>
+          <li data-es="Mesa de bienvenida decorada con bebidas y una sombrilla en una canasta">Welcome table styled with drinks &amp; a sun umbrella in a basket</li>
+          <li data-es="El espejo mostrará un mensaje de bienvenida / monograma (ver maqueta)">Mirror will display a welcome message / monogram (see mockup)</li>
         </ul>
         <div class="gallery">
-          <figure><img src="assets/inspo/inspo-01.jpg" alt="Welcome table inspiration"><figcaption>Welcome table inspiration — drinks &amp; sun umbrella in a basket</figcaption></figure>
-          <figure><img src="assets/inspo/inspo-02.jpg" alt="Mirror welcome message mockup"><figcaption>Mirror welcome message mockup</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-01.jpg" alt="Welcome table inspiration"><figcaption data-es="Inspiración para la mesa de bienvenida — bebidas y sombrilla en una canasta">Welcome table inspiration — drinks &amp; sun umbrella in a basket</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-02.jpg" alt="Mirror welcome message mockup"><figcaption data-es="Maqueta del mensaje de bienvenida del espejo">Mirror welcome message mockup</figcaption></figure>
         </div>
-        <div class="openq"><span class="tag">Open</span>Do we need to bring a basket for the welcome table umbrella?</div>
+        <div class="openq"><span class="tag" data-i18n="tagOpen">Open</span><span data-es="¿Necesitamos traer una canasta para la sombrilla de la mesa de bienvenida?">Do we need to bring a basket for the welcome table umbrella?</span></div>
         <div class="tobring">
-          <div class="tag">To Bring — Janan &amp; Juan</div>
+          <div class="tag" data-i18n="toBring">To Bring — Janan &amp; Juan</div>
           <ul>
-            <li>Sun umbrella (for the welcome basket)</li>
+            <li data-es="Sombrilla (para la canasta de bienvenida)">Sun umbrella (for the welcome basket)</li>
           </ul>
         </div>
       </div>
 
       <div class="block">
-        <h3>Entertainment</h3>
-        <p>Classical violin &amp; cello<br>Contact: Dani, +34 625 85 39 17</p>
+        <h3 data-i18n="hEntertainment">Entertainment</h3>
+        <p><span data-es="Violín y violonchelo clásico">Classical violin &amp; cello</span><br><span data-i18n="contactLabel">Contact:</span> Dani, +34 625 85 39 17</p>
       </div>
 
       <div class="block">
-        <h3>Food &amp; Beverage</h3>
-        <p>Light Lemonade station — to be confirmed</p>
+        <h3 data-i18n="hFoodBeverage">Food &amp; Beverage</h3>
+        <p data-es="Puesto de limonada ligera — por confirmar">Light Lemonade station — to be confirmed</p>
       </div>
 
       <div class="block">
-        <h3>Photography &amp; Video</h3>
+        <h3 data-i18n="hPhotoVideo">Photography &amp; Video</h3>
       </div>
 
       <div class="block">
-        <h3>Vendor Contacts</h3>
-        <div class="vendor"><div class="role">Violin &amp; Cello</div><div class="line">Contact: Dani, +34 625 85 39 17</div><div class="line">Arrival Time: —</div></div>
+        <h3 data-i18n="hVendorContacts">Vendor Contacts</h3>
+        <div class="vendor"><div class="role" data-es="Violín y Violonchelo">Violin &amp; Cello</div><div class="line"><span data-i18n="contactLabel">Contact:</span> Dani, +34 625 85 39 17</div><div class="line"><span data-i18n="arrivalLabel">Arrival Time:</span> —</div></div>
       </div>
 
       <div class="block">
-        <h3>Production Checklist</h3>
+        <h3 data-i18n="hProductionChecklist">Production Checklist</h3>
         <ul class="checklist" data-group="welcome">
-          <li data-id="mirror-installed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Mirror installed</span></li>
-          <li data-id="flowers-arranged"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Flowers arranged</span></li>
-          <li data-id="musicians-arrived"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Musicians arrived</span></li>
-          <li data-id="photographer-on-site"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer on site</span></li>
-          <li data-id="videographer-on-site"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer on site</span></li>
+          <li data-id="mirror-installed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Espejo instalado">Mirror installed</span></li>
+          <li data-id="flowers-arranged"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Flores dispuestas">Flowers arranged</span></li>
+          <li data-id="musicians-arrived"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Músicos llegaron">Musicians arrived</span></li>
+          <li data-id="photographer-on-site"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Fotógrafo en el lugar">Photographer on site</span></li>
+          <li data-id="videographer-on-site"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Videógrafo en el lugar">Videographer on site</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Notes</h3>
+        <h3 data-i18n="hNotes">Notes</h3>
         <textarea class="notes-area" data-notes="welcome" placeholder="Add notes for this section..."></textarea>
-        <div class="save-hint">Autosaves as you type</div>
+        <div class="save-hint" data-i18n="autosave">Autosaves as you type</div>
       </div>
       </div>
     </section>
@@ -917,81 +931,81 @@
     <!-- ============ CEREMONY ============ -->
     <section class="page" id="ceremony">
       <div class="section-head">
-        <h2>Ceremony</h2>
+        <h2 data-i18n="navCeremony">Ceremony</h2>
         <div class="time">6:30 PM – 7:00 PM</div>
       </div>
 
       <div class="page-body">
       <div class="block">
-        <h3>Guest Experience</h3>
-        <ul class="plain"><li>Violin &amp; cello</li><li>Fans &amp; Umbrellas for every guest</li><li>Ceremony flowers</li></ul>
+        <h3 data-i18n="hGuestExperience">Guest Experience</h3>
+        <ul class="plain"><li data-es="Violín y violonchelo">Violin &amp; cello</li><li data-es="Abanicos y sombrillas para cada invitado">Fans &amp; Umbrellas for every guest</li><li data-es="Flores de la ceremonia">Ceremony flowers</li></ul>
       </div>
 
       <div class="block">
-        <h3>Timeline</h3>
-        <div class="timeline-row"><div class="t">6:00 PM</div><div class="e">Guests arrive</div></div>
-        <div class="timeline-row"><div class="t">6:30 PM</div><div class="e">Ceremony</div></div>
-        <div class="timeline-row"><div class="t">7:00 PM</div><div class="e">Ceremony concludes</div></div>
+        <h3 data-i18n="hTimeline">Timeline</h3>
+        <div class="timeline-row"><div class="t">6:00 PM</div><div class="e" data-es="Llegada de los invitados">Guests arrive</div></div>
+        <div class="timeline-row"><div class="t">6:30 PM</div><div class="e" data-i18n="navCeremony">Ceremony</div></div>
+        <div class="timeline-row"><div class="t">7:00 PM</div><div class="e" data-es="Finaliza la ceremonia">Ceremony concludes</div></div>
       </div>
 
       <div class="block">
-        <h3>Design &amp; Décor</h3>
+        <h3 data-i18n="hDesignDecor">Design &amp; Décor</h3>
         <ul class="plain">
-          <li>Flowers — white or neutral only, no dark colors (off-white)</li>
-          <li>Aisle flowers</li>
-          <li>Chairs</li>
-          <li>Mechanical fans placed on each chair</li>
-          <li>Rose petals in a basket for 4 flower girls</li>
-          <li>Officiant: Nabeel — Janan &amp; Juan will stand throughout, no seating for the couple; will need a microphone</li>
+          <li data-es="Flores — solo blancas o neutras, sin colores oscuros (blanco roto)">Flowers — white or neutral only, no dark colors (off-white)</li>
+          <li data-es="Flores del pasillo">Aisle flowers</li>
+          <li data-es="Sillas">Chairs</li>
+          <li data-es="Abanicos mecánicos colocados en cada silla">Mechanical fans placed on each chair</li>
+          <li data-es="Pétalos de rosa en una canasta para 4 niñas de las flores">Rose petals in a basket for 4 flower girls</li>
+          <li data-es="Oficiante: Nabeel — Janan y Juan estarán de pie durante toda la ceremonia, sin asientos para los novios; se necesitará un micrófono">Officiant: Nabeel — Janan &amp; Juan will stand throughout, no seating for the couple; will need a microphone</li>
         </ul>
         <div class="gallery">
-          <figure><img src="assets/inspo/inspo-04.jpg" alt="Arch styling reference"><figcaption>Arch styling reference — white/off-white flowers, not dark colors (venue photo, placement circled)</figcaption></figure>
-          <figure><img src="assets/inspo/inspo-05.jpg" alt="Bridal bouquet reference"><figcaption>Bridal bouquet reference</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-04.jpg" alt="Arch styling reference"><figcaption data-es="Referencia de estilo del arco — flores blancas/blanco roto, sin colores oscuros (foto del lugar, ubicación marcada con círculo)">Arch styling reference — white/off-white flowers, not dark colors (venue photo, placement circled)</figcaption></figure>
+          <figure><img src="assets/inspo/inspo-05.jpg" alt="Bridal bouquet reference"><figcaption data-es="Referencia del ramo de novia">Bridal bouquet reference</figcaption></figure>
         </div>
-        <div class="openq"><span class="tag">Open</span>Aisle runner — still deciding whether to include one.</div>
-        <div class="openq"><span class="tag">Open</span>Need to find placement for the 2 violin players.</div>
+        <div class="openq"><span class="tag" data-i18n="tagOpen">Open</span><span data-es="Camino de pasillo — aún decidiendo si incluir uno.">Aisle runner — still deciding whether to include one.</span></div>
+        <div class="openq"><span class="tag" data-i18n="tagOpen">Open</span><span data-es="Falta encontrar la ubicación de los 2 violinistas.">Need to find placement for the 2 violin players.</span></div>
         <div class="tobring">
-          <div class="tag">To Bring — Janan &amp; Juan</div>
-          <ul><li>Mechanical fans for each chair</li></ul>
+          <div class="tag" data-i18n="toBring">To Bring — Janan &amp; Juan</div>
+          <ul><li data-es="Abanicos mecánicos para cada silla">Mechanical fans for each chair</li></ul>
         </div>
       </div>
 
       <div class="block">
-        <h3>Entertainment</h3>
-        <p>Violin &amp; Cello<br>Contact: Dani, +34 625 85 39 17</p>
+        <h3 data-i18n="hEntertainment">Entertainment</h3>
+        <p><span data-es="Violín y Violonchelo">Violin &amp; Cello</span><br><span data-i18n="contactLabel">Contact:</span> Dani, +34 625 85 39 17</p>
       </div>
 
       <div class="block">
-        <h3>Food &amp; Beverage</h3>
+        <h3 data-i18n="hFoodBeverage">Food &amp; Beverage</h3>
         <p>—</p>
       </div>
 
       <div class="block">
-        <h3>Photography &amp; Video</h3>
+        <h3 data-i18n="hPhotoVideo">Photography &amp; Video</h3>
       </div>
 
       <div class="block">
-        <h3>Vendor Contacts</h3>
-        <div class="vendor"><div class="role">Violin &amp; Cello</div><div class="line">Contact: Dani, +34 625 85 39 17</div><div class="line">Arrival Time: —</div></div>
+        <h3 data-i18n="hVendorContacts">Vendor Contacts</h3>
+        <div class="vendor"><div class="role" data-es="Violín y Violonchelo">Violin &amp; Cello</div><div class="line"><span data-i18n="contactLabel">Contact:</span> Dani, +34 625 85 39 17</div><div class="line"><span data-i18n="arrivalLabel">Arrival Time:</span> —</div></div>
       </div>
 
       <div class="block">
-        <h3>Production Checklist</h3>
+        <h3 data-i18n="hProductionChecklist">Production Checklist</h3>
         <ul class="checklist" data-group="ceremony">
-          <li data-id="chairs-set"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Chairs set</span></li>
-          <li data-id="flowers-complete"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Flowers complete</span></li>
-          <li data-id="fans-distributed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Fans distributed</span></li>
-          <li data-id="sound-checked"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Sound checked</span></li>
-          <li data-id="musicians-ready"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Musicians ready</span></li>
-          <li data-id="photographer-positioned"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer positioned</span></li>
-          <li data-id="videographer-positioned"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer positioned</span></li>
+          <li data-id="chairs-set"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Sillas listas">Chairs set</span></li>
+          <li data-id="flowers-complete"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Flores completas">Flowers complete</span></li>
+          <li data-id="fans-distributed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Abanicos distribuidos">Fans distributed</span></li>
+          <li data-id="sound-checked"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Sonido revisado">Sound checked</span></li>
+          <li data-id="musicians-ready"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Músicos listos">Musicians ready</span></li>
+          <li data-id="photographer-positioned"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Fotógrafo posicionado">Photographer positioned</span></li>
+          <li data-id="videographer-positioned"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Videógrafo posicionado">Videographer positioned</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Notes</h3>
+        <h3 data-i18n="hNotes">Notes</h3>
         <textarea class="notes-area" data-notes="ceremony" placeholder="Add notes for this section..."></textarea>
-        <div class="save-hint">Autosaves as you type</div>
+        <div class="save-hint" data-i18n="autosave">Autosaves as you type</div>
       </div>
       </div>
     </section>
@@ -999,77 +1013,77 @@
     <!-- ============ COCKTAIL HOUR ============ -->
     <section class="page" id="cocktail">
       <div class="section-head">
-        <h2>Cocktail Hour</h2>
-        <div class="time">7:00 PM – 8:00 PM (8:00–8:15 PM transition)</div>
+        <h2 data-i18n="navCocktail">Cocktail Hour</h2>
+        <div class="time" data-es="7:00 PM – 8:00 PM (transición 8:00–8:15 PM)">7:00 PM – 8:00 PM (8:00–8:15 PM transition)</div>
       </div>
 
       <div class="page-body">
       <div class="block">
-        <h3>Guest Experience</h3>
+        <h3 data-i18n="hGuestExperience">Guest Experience</h3>
         <ul class="plain">
-          <li>Live flamenco</li><li>White napkins</li><li>Couple entrance</li>
-          <li>Champagne tower</li><li>Passed appetizers</li><li>Cocktails</li>
+          <li data-es="Flamenco en vivo">Live flamenco</li><li data-es="Servilletas blancas">White napkins</li><li data-es="Entrada de los novios">Couple entrance</li>
+          <li data-es="Torre de champán">Champagne tower</li><li data-es="Aperitivos servidos">Passed appetizers</li><li data-es="Cócteles">Cocktails</li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Timeline</h3>
-        <div class="timeline-row"><div class="t">7:00 PM</div><div class="e">Cocktail hour</div></div>
-        <div class="timeline-row"><div class="t">7:00 PM</div><div class="e">Flamenco begins</div></div>
-        <div class="timeline-row"><div class="t">7:30 PM</div><div class="e">Couple entrance</div></div>
-        <div class="timeline-row"><div class="t"></div><div class="e">Guests wave white napkins</div></div>
-        <div class="timeline-row"><div class="t"></div><div class="e">Champagne tower</div></div>
-        <div class="timeline-row"><div class="t">8:00 PM</div><div class="e">Cocktail concludes</div></div>
+        <h3 data-i18n="hTimeline">Timeline</h3>
+        <div class="timeline-row"><div class="t">7:00 PM</div><div class="e" data-i18n="navCocktail">Cocktail hour</div></div>
+        <div class="timeline-row"><div class="t">7:00 PM</div><div class="e" data-es="Comienza el flamenco">Flamenco begins</div></div>
+        <div class="timeline-row"><div class="t">7:30 PM</div><div class="e" data-es="Entrada de los novios">Couple entrance</div></div>
+        <div class="timeline-row"><div class="t"></div><div class="e" data-es="Los invitados agitan servilletas blancas">Guests wave white napkins</div></div>
+        <div class="timeline-row"><div class="t"></div><div class="e" data-es="Torre de champán">Champagne tower</div></div>
+        <div class="timeline-row"><div class="t">8:00 PM</div><div class="e" data-es="Finaliza el cóctel">Cocktail concludes</div></div>
       </div>
 
       <div class="block">
-        <h3>Design &amp; Décor</h3>
+        <h3 data-i18n="hDesignDecor">Design &amp; Décor</h3>
         <ul class="plain">
-          <li>Champagne tower</li><li>Cocktail tables</li><li>White fabric napkins</li>
-          <li>Florals — off-white / white flowers on tables only</li>
+          <li data-es="Torre de champán">Champagne tower</li><li data-es="Mesas de cóctel">Cocktail tables</li><li data-es="Servilletas de tela blancas">White fabric napkins</li>
+          <li data-es="Flores — solo flores blancas/blanco roto en las mesas">Florals — off-white / white flowers on tables only</li>
         </ul>
-        <div class="openq"><span class="tag">Open</span>Flamenco band placement — needs to be up with guests on the second level, not at the bottom.</div>
+        <div class="openq"><span class="tag" data-i18n="tagOpen">Open</span><span data-es="Ubicación de la banda de flamenco — debe estar arriba con los invitados en el segundo nivel, no abajo.">Flamenco band placement — needs to be up with guests on the second level, not at the bottom.</span></div>
         <div class="tobring">
-          <div class="tag">To Bring — Janan &amp; Juan</div>
-          <ul><li>White fabric napkins for guests to twirl during the couple's entrance moment</li></ul>
+          <div class="tag" data-i18n="toBring">To Bring — Janan &amp; Juan</div>
+          <ul><li data-es="Servilletas de tela blancas para que los invitados las agiten durante la entrada de los novios">White fabric napkins for guests to twirl during the couple's entrance moment</li></ul>
         </div>
       </div>
 
       <div class="block">
-        <h3>Entertainment</h3>
-        <p>Madrid Flamenco<br>Entrance song: Bamboleo<br>Contact: +34 690 38 64 49</p>
+        <h3 data-i18n="hEntertainment">Entertainment</h3>
+        <p>Madrid Flamenco<br><span data-es="Canción de entrada:">Entrance song:</span> Bamboleo<br><span data-i18n="contactLabel">Contact:</span> +34 690 38 64 49</p>
       </div>
 
       <div class="block">
-        <h3>Food &amp; Beverage</h3>
-        <ul class="plain"><li>Cocktails</li><li>Passed appetizers</li><li>Champagne tower</li></ul>
+        <h3 data-i18n="hFoodBeverage">Food &amp; Beverage</h3>
+        <ul class="plain"><li data-es="Cócteles">Cocktails</li><li data-es="Aperitivos servidos">Passed appetizers</li><li data-es="Torre de champán">Champagne tower</li></ul>
       </div>
 
       <div class="block">
-        <h3>Photography &amp; Video</h3>
+        <h3 data-i18n="hPhotoVideo">Photography &amp; Video</h3>
       </div>
 
       <div class="block">
-        <h3>Vendor Contacts</h3>
-        <div class="vendor"><div class="role">Madrid Flamenco</div><div class="line">Contact: +34 690 38 64 49</div><div class="line">Arrival Time: —</div></div>
+        <h3 data-i18n="hVendorContacts">Vendor Contacts</h3>
+        <div class="vendor"><div class="role">Madrid Flamenco</div><div class="line"><span data-i18n="contactLabel">Contact:</span> +34 690 38 64 49</div><div class="line"><span data-i18n="arrivalLabel">Arrival Time:</span> —</div></div>
       </div>
 
       <div class="block">
-        <h3>Production Checklist</h3>
+        <h3 data-i18n="hProductionChecklist">Production Checklist</h3>
         <ul class="checklist" data-group="cocktail">
-          <li data-id="tower-assembled"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Champagne tower assembled</span></li>
-          <li data-id="napkins-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">White napkins placed</span></li>
-          <li data-id="flamenco-arrived"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Flamenco arrived</span></li>
-          <li data-id="entrance-cue-confirmed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Entrance cue confirmed</span></li>
-          <li data-id="photographer-ready-c"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer ready</span></li>
-          <li data-id="videographer-ready-c"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer ready</span></li>
+          <li data-id="tower-assembled"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Torre de champán armada">Champagne tower assembled</span></li>
+          <li data-id="napkins-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Servilletas blancas colocadas">White napkins placed</span></li>
+          <li data-id="flamenco-arrived"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Flamenco llegó">Flamenco arrived</span></li>
+          <li data-id="entrance-cue-confirmed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Señal de entrada confirmada">Entrance cue confirmed</span></li>
+          <li data-id="photographer-ready-c"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Fotógrafo listo">Photographer ready</span></li>
+          <li data-id="videographer-ready-c"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Videógrafo listo">Videographer ready</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Notes</h3>
+        <h3 data-i18n="hNotes">Notes</h3>
         <textarea class="notes-area" data-notes="cocktail" placeholder="Add notes for this section..."></textarea>
-        <div class="save-hint">Autosaves as you type</div>
+        <div class="save-hint" data-i18n="autosave">Autosaves as you type</div>
       </div>
       </div>
     </section>
@@ -1077,98 +1091,98 @@
     <!-- ============ DINNER ============ -->
     <section class="page" id="dinner">
       <div class="section-head">
-        <h2>Dinner</h2>
+        <h2 data-i18n="navDinner">Dinner</h2>
         <div class="time">8:15 PM – 10:15 PM</div>
       </div>
 
       <div class="page-body">
       <div class="block">
-        <h3>Guest Experience</h3>
-        <ul class="plain"><li>Multi-course dinner</li><li>Toasts</li><li>Warm candlelight</li></ul>
+        <h3 data-i18n="hGuestExperience">Guest Experience</h3>
+        <ul class="plain"><li data-es="Cena de varios tiempos">Multi-course dinner</li><li data-es="Brindis">Toasts</li><li data-es="Cálida luz de velas">Warm candlelight</li></ul>
       </div>
 
       <div class="block">
-        <h3>Timeline</h3>
-        <div class="timeline-row"><div class="t">8:15 PM</div><div class="e">Dinner</div></div>
-        <div class="timeline-row"><div class="t">9:00 PM</div><div class="e">Speech — Mohamed</div></div>
-        <div class="timeline-row"><div class="t">9:10 PM</div><div class="e">Speech — Hernando</div></div>
-        <div class="timeline-row"><div class="t">9:20 PM</div><div class="e">Speech — Jesse</div></div>
-        <div class="timeline-row"><div class="t">9:30 PM</div><div class="e">Speech — Aala</div></div>
-        <div class="timeline-row"><div class="t">10:15 PM</div><div class="e">Dinner concludes</div></div>
+        <h3 data-i18n="hTimeline">Timeline</h3>
+        <div class="timeline-row"><div class="t">8:15 PM</div><div class="e" data-i18n="navDinner">Dinner</div></div>
+        <div class="timeline-row"><div class="t">9:00 PM</div><div class="e" data-es="Discurso — Mohamed">Speech — Mohamed</div></div>
+        <div class="timeline-row"><div class="t">9:10 PM</div><div class="e" data-es="Discurso — Hernando">Speech — Hernando</div></div>
+        <div class="timeline-row"><div class="t">9:20 PM</div><div class="e" data-es="Discurso — Jesse">Speech — Jesse</div></div>
+        <div class="timeline-row"><div class="t">9:30 PM</div><div class="e" data-es="Discurso — Aala">Speech — Aala</div></div>
+        <div class="timeline-row"><div class="t">10:15 PM</div><div class="e" data-es="Finaliza la cena">Dinner concludes</div></div>
       </div>
 
       <div class="block">
-        <h3>Design &amp; Décor</h3>
+        <h3 data-i18n="hDesignDecor">Design &amp; Décor</h3>
         <ul class="plain">
-          <li>White calla flower on each plate</li>
-          <li>Increase candles — focus on candle look/effect as much as florals</li>
-          <li>Floral centerpieces — light / white / off-white flowers</li>
-          <li>Curved tables for guests (not straight rows)</li>
-          <li>Draped tablecloth look</li>
-          <li>Small cake + champagne tower moment at the end of dinner (same table cover as other tables)</li>
-          <li>Ambient lighting</li>
-          <li>Seating-chart mirror with flowers &amp; candles matching the theme (see inspo)</li>
-          <li>"Section A" / "Section B" seating signs to help guests find their table — wedding team to provide</li>
+          <li data-es="Flor de cala blanca en cada plato">White calla flower on each plate</li>
+          <li data-es="Aumentar las velas — enfocarse en el efecto de las velas tanto como en las flores">Increase candles — focus on candle look/effect as much as florals</li>
+          <li data-es="Centros de mesa florales — flores claras / blancas / blanco roto">Floral centerpieces — light / white / off-white flowers</li>
+          <li data-es="Mesas curvas para los invitados (no en filas rectas)">Curved tables for guests (not straight rows)</li>
+          <li data-es="Look de mantelería drapeada">Draped tablecloth look</li>
+          <li data-es="Pastel pequeño + torre de champán al final de la cena (mismo mantel que las demás mesas)">Small cake + champagne tower moment at the end of dinner (same table cover as other tables)</li>
+          <li data-es="Iluminación ambiental">Ambient lighting</li>
+          <li data-es="Espejo del plano de mesas con flores y velas a juego con la temática (ver inspiración)">Seating-chart mirror with flowers &amp; candles matching the theme (see inspo)</li>
+          <li data-es='Letreros de "Sección A" / "Sección B" para ayudar a los invitados a encontrar su mesa — los proveerá el equipo de la boda'>"Section A" / "Section B" seating signs to help guests find their table — wedding team to provide</li>
         </ul>
         <div class="gallery">
-          <figure><img src="assets/inspo/dinner-seating-mirror.jpg" alt="Seating chart mirror inspiration"><figcaption>Seating chart mirror inspiration — flowers &amp; candles to match our theme</figcaption></figure>
-          <figure><img src="assets/inspo/cake-champagne-moment.jpg" alt="Cake and champagne tower moment, real event"><figcaption>Cake-cutting + champagne tower moment, string lights above</figcaption></figure>
-          <figure><img src="assets/inspo/dinner-candles-sunset.jpg" alt="Long candlelit table at sunset"><figcaption>Long candlelit table at sunset — heavy on candles, light on florals</figcaption></figure>
-          <figure><img src="assets/inspo/dinner-candle-plinths.jpg" alt="Candle plinths clustered outdoors"><figcaption>Candle cluster on plinths — additional candle-look reference</figcaption></figure>
-          <figure><img src="assets/inspo/dinner-candles-callas.jpg" alt="Hurricane candles with single-stem callas"><figcaption>Hurricane candles with single-stem callas down the table</figcaption></figure>
-          <figure><img src="assets/inspo/dinner-candles-runner.jpg" alt="Candle cluster running down table"><figcaption>Candle cluster running the length of the table</figcaption></figure>
-          <figure><img src="assets/inspo/dinner-candles-crossback-chairs.jpg" alt="All-candle reception table with cross-back chairs"><figcaption>All-candle tablescape at dusk — cross-back chair reference</figcaption></figure>
-          <figure><img src="assets/inspo/curved-table-bentwood-chairs.jpg" alt="Curved table with bentwood chairs"><figcaption>Curved table shape reference, with bentwood chairs</figcaption></figure>
-          <figure><img src="assets/inspo/curved-table-ghost-chairs.jpg" alt="Curved table with clear ghost chairs"><figcaption>Curved table reference with clear ghost chairs, blush &amp; white florals</figcaption></figure>
-          <figure><img src="assets/inspo/round-tables-floral-garland.jpg" alt="S-curved row of round tables linked by floral garland"><figcaption>S-curved run of round tables linked by a floral garland, cross-back chairs</figcaption></figure>
+          <figure><img src="assets/inspo/dinner-seating-mirror.jpg" alt="Seating chart mirror inspiration"><figcaption data-es="Inspiración para el espejo del plano de mesas — flores y velas a juego con nuestra temática">Seating chart mirror inspiration — flowers &amp; candles to match our theme</figcaption></figure>
+          <figure><img src="assets/inspo/cake-champagne-moment.jpg" alt="Cake and champagne tower moment, real event"><figcaption data-es="Momento de corte de pastel + torre de champán, con luces colgantes arriba">Cake-cutting + champagne tower moment, string lights above</figcaption></figure>
+          <figure><img src="assets/inspo/dinner-candles-sunset.jpg" alt="Long candlelit table at sunset"><figcaption data-es="Mesa larga iluminada con velas al atardecer — mucha vela, poca flor">Long candlelit table at sunset — heavy on candles, light on florals</figcaption></figure>
+          <figure><img src="assets/inspo/dinner-candle-plinths.jpg" alt="Candle plinths clustered outdoors"><figcaption data-es="Grupo de velas sobre pedestales — referencia adicional del look de velas">Candle cluster on plinths — additional candle-look reference</figcaption></figure>
+          <figure><img src="assets/inspo/dinner-candles-callas.jpg" alt="Hurricane candles with single-stem callas"><figcaption data-es="Velas en faroles con calas de tallo individual a lo largo de la mesa">Hurricane candles with single-stem callas down the table</figcaption></figure>
+          <figure><img src="assets/inspo/dinner-candles-runner.jpg" alt="Candle cluster running down table"><figcaption data-es="Grupo de velas a lo largo de toda la mesa">Candle cluster running the length of the table</figcaption></figure>
+          <figure><img src="assets/inspo/dinner-candles-crossback-chairs.jpg" alt="All-candle reception table with cross-back chairs"><figcaption data-es="Ambientación de mesa solo con velas al anochecer — referencia de silla cross-back">All-candle tablescape at dusk — cross-back chair reference</figcaption></figure>
+          <figure><img src="assets/inspo/curved-table-bentwood-chairs.jpg" alt="Curved table with bentwood chairs"><figcaption data-es="Referencia de mesa curva, con sillas de madera curvada">Curved table shape reference, with bentwood chairs</figcaption></figure>
+          <figure><img src="assets/inspo/curved-table-ghost-chairs.jpg" alt="Curved table with clear ghost chairs"><figcaption data-es='Referencia de mesa curva con sillas transparentes tipo "ghost", flores blancas y rosa pálido'>Curved table reference with clear ghost chairs, blush &amp; white florals</figcaption></figure>
+          <figure><img src="assets/inspo/round-tables-floral-garland.jpg" alt="S-curved row of round tables linked by floral garland"><figcaption data-es='Fila de mesas redondas en forma de "S" unidas por una guirnalda floral, sillas cross-back'>S-curved run of round tables linked by a floral garland, cross-back chairs</figcaption></figure>
         </div>
-        <div class="openq"><span class="tag">Open</span>Need reference pictures of chairs (see curved-table references above for style direction — final rental still TBD).</div>
-        <div class="openq"><span class="tag">Open</span>Need reference pictures of table covers.</div>
-        <div class="openq"><span class="tag">Open</span>Seating chart mirror — can the venue provide one, or do we need to source a vendor?</div>
+        <div class="openq"><span class="tag" data-i18n="tagOpen">Open</span><span data-es="Se necesitan fotos de referencia de las sillas (ver las referencias de mesas curvas arriba para orientación de estilo — la renta final aún está por definir).">Need reference pictures of chairs (see curved-table references above for style direction — final rental still TBD).</span></div>
+        <div class="openq"><span class="tag" data-i18n="tagOpen">Open</span><span data-es="Se necesitan fotos de referencia de los manteles.">Need reference pictures of table covers.</span></div>
+        <div class="openq"><span class="tag" data-i18n="tagOpen">Open</span><span data-es="Espejo del plano de mesas — ¿puede proporcionarlo el lugar, o necesitamos buscar un proveedor?">Seating chart mirror — can the venue provide one, or do we need to source a vendor?</span></div>
         <div class="tobring">
-          <div class="tag">To Bring — Janan &amp; Juan</div>
-          <ul><li>Name tags to distribute on tables</li></ul>
+          <div class="tag" data-i18n="toBring">To Bring — Janan &amp; Juan</div>
+          <ul><li data-es="Tarjetas con nombre para distribuir en las mesas">Name tags to distribute on tables</li></ul>
         </div>
       </div>
 
       <div class="block">
-        <h3>Entertainment</h3>
-        <p>Toasts as scheduled.</p>
+        <h3 data-i18n="hEntertainment">Entertainment</h3>
+        <p data-es="Brindis según lo programado.">Toasts as scheduled.</p>
       </div>
 
       <div class="block">
-        <h3>Food &amp; Beverage</h3>
-        <ul class="plain"><li>Multi-course dinner</li><li>Wine service</li><li>Dessert</li></ul>
+        <h3 data-i18n="hFoodBeverage">Food &amp; Beverage</h3>
+        <ul class="plain"><li data-es="Cena de varios tiempos">Multi-course dinner</li><li data-es="Servicio de vino">Wine service</li><li data-es="Postre">Dessert</li></ul>
       </div>
 
       <div class="block">
-        <h3>Photography &amp; Video</h3>
+        <h3 data-i18n="hPhotoVideo">Photography &amp; Video</h3>
       </div>
 
       <div class="block">
-        <h3>Vendor Contacts</h3>
-        <div class="vendor"><div class="role">Catering</div><div class="line">Contact: —</div></div>
-        <div class="vendor"><div class="role">Coordinator</div><div class="line">Contact: —</div></div>
-        <div class="vendor"><div class="role">Planner</div><div class="line">Contact: —</div></div>
+        <h3 data-i18n="hVendorContacts">Vendor Contacts</h3>
+        <div class="vendor"><div class="role" data-es="Banquetes">Catering</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
+        <div class="vendor"><div class="role" data-es="Coordinación">Coordinator</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
+        <div class="vendor"><div class="role" data-es="Planificación">Planner</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
       </div>
 
       <div class="block">
-        <h3>Production Checklist</h3>
+        <h3 data-i18n="hProductionChecklist">Production Checklist</h3>
         <ul class="checklist" data-group="dinner">
-          <li data-id="tables-complete"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Tables complete</span></li>
-          <li data-id="candles-lit"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Candles lit</span></li>
-          <li data-id="menus-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Menus placed</span></li>
-          <li data-id="catering-ready"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Catering ready</span></li>
-          <li data-id="mics-tested"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Microphones tested</span></li>
-          <li data-id="photographer-ready-d"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer ready</span></li>
-          <li data-id="videographer-ready-d"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer ready</span></li>
+          <li data-id="tables-complete"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Mesas completas">Tables complete</span></li>
+          <li data-id="candles-lit"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Velas encendidas">Candles lit</span></li>
+          <li data-id="menus-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Menús colocados">Menus placed</span></li>
+          <li data-id="catering-ready"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Banquetes listo">Catering ready</span></li>
+          <li data-id="mics-tested"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Micrófonos probados">Microphones tested</span></li>
+          <li data-id="photographer-ready-d"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Fotógrafo listo">Photographer ready</span></li>
+          <li data-id="videographer-ready-d"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Videógrafo listo">Videographer ready</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Notes</h3>
+        <h3 data-i18n="hNotes">Notes</h3>
         <textarea class="notes-area" data-notes="dinner" placeholder="Add notes for this section..."></textarea>
-        <div class="save-hint">Autosaves as you type</div>
+        <div class="save-hint" data-i18n="autosave">Autosaves as you type</div>
       </div>
       </div>
     </section>
@@ -1176,101 +1190,101 @@
     <!-- ============ CELEBRATION ============ -->
     <section class="page" id="celebration">
       <div class="section-head">
-        <h2>Celebration</h2>
+        <h2 data-i18n="navCelebration">Celebration</h2>
         <div class="time">10:15 PM – 3:00 AM</div>
       </div>
 
       <div class="page-body">
       <div class="block">
-        <h3>Guest Experience</h3>
+        <h3 data-i18n="hGuestExperience">Guest Experience</h3>
         <ul class="plain">
-          <li>Zaffah procession</li><li>First dance</li><li>Parent dances</li>
-          <li>Live violin into the party</li><li>Grand entrance to Khatafouny</li>
-          <li>Belly dancer performance</li><li>Bouquet toss</li><li>Fireworks (to be confirmed)</li>
+          <li data-es="Procesión de Zaffah">Zaffah procession</li><li data-es="Primer baile">First dance</li><li data-es="Bailes con los padres">Parent dances</li>
+          <li data-es="Violín en vivo hacia la fiesta">Live violin into the party</li><li data-es='Gran entrada con "Khatafouny"'>Grand entrance to Khatafouny</li>
+          <li data-es="Actuación de bailarina de danza del vientre">Belly dancer performance</li><li data-es="Lanzamiento del ramo">Bouquet toss</li><li data-es="Fuegos artificiales (por confirmar)">Fireworks (to be confirmed)</li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Timeline</h3>
+        <h3 data-i18n="hTimeline">Timeline</h3>
         <div class="timeline-row"><div class="t">10:15 PM</div><div class="e">Zaffah</div></div>
-        <div class="timeline-row"><div class="t">10:40 PM</div><div class="e">First Dance</div></div>
-        <div class="timeline-row"><div class="t">10:43 PM</div><div class="e">Mother &amp; Son Dance</div></div>
-        <div class="timeline-row"><div class="t">10:46 PM</div><div class="e">Father &amp; Daughter Dance</div></div>
-        <div class="timeline-row"><div class="t">10:50 PM</div><div class="e">Violin performance; bride changes dress</div></div>
-        <div class="timeline-row"><div class="t">10:55 PM</div><div class="e">Grand Entrance — "Khatafouny"</div></div>
-        <div class="timeline-row"><div class="t">Following</div><div class="e">"La Vida Es Un Carnaval"</div></div>
-        <div class="timeline-row"><div class="t">11:30 PM</div><div class="e">Belly Dancer Performance</div></div>
-        <div class="timeline-row"><div class="t">12:00 AM</div><div class="e">Bouquet Toss</div></div>
-        <div class="timeline-row"><div class="t">12:05 AM</div><div class="e">Fireworks — to be confirmed</div></div>
+        <div class="timeline-row"><div class="t">10:40 PM</div><div class="e" data-es="Primer Baile">First Dance</div></div>
+        <div class="timeline-row"><div class="t">10:43 PM</div><div class="e" data-es="Baile de Madre e Hijo">Mother &amp; Son Dance</div></div>
+        <div class="timeline-row"><div class="t">10:46 PM</div><div class="e" data-es="Baile de Padre e Hija">Father &amp; Daughter Dance</div></div>
+        <div class="timeline-row"><div class="t">10:50 PM</div><div class="e" data-es="Actuación de violín; la novia se cambia de vestido">Violin performance; bride changes dress</div></div>
+        <div class="timeline-row"><div class="t">10:55 PM</div><div class="e" data-es='Gran Entrada — "Khatafouny"'>Grand Entrance — "Khatafouny"</div></div>
+        <div class="timeline-row"><div class="t" data-es="A continuación">Following</div><div class="e">"La Vida Es Un Carnaval"</div></div>
+        <div class="timeline-row"><div class="t">11:30 PM</div><div class="e" data-es="Actuación de Bailarina de Danza del Vientre">Belly Dancer Performance</div></div>
+        <div class="timeline-row"><div class="t">12:00 AM</div><div class="e" data-es="Lanzamiento del Ramo">Bouquet Toss</div></div>
+        <div class="timeline-row"><div class="t">12:05 AM</div><div class="e" data-es="Fuegos artificiales — por confirmar">Fireworks — to be confirmed</div></div>
       </div>
 
       <div class="block">
-        <h3>Design &amp; Décor</h3>
+        <h3 data-i18n="hDesignDecor">Design &amp; Décor</h3>
         <ul class="plain">
-          <li>Dance floor lighting</li>
-          <li>Sparkle/pinspot light wash + disco ball over the dance floor for a warm, glittery first-dance moment</li>
-          <li>Uplighting</li>
-          <li>Smoke machine</li>
-          <li>LED neon sign (couple to provide), placed as in reference</li>
-          <li>Flowers placed similar to reference — white / off-white</li>
-          <li>Zaffah props / drums</li>
-          <li>Late-night lounge styling</li>
-          <li>Low-seated &amp; high-top tables near the dance floor — keep the group together, don't encourage guests to leave the dance area (small guest count)</li>
-          <li>Sparklers during the belly dancer's last song</li>
+          <li data-es="Iluminación de la pista de baile">Dance floor lighting</li>
+          <li data-es="Baño de luz brillante/pinspot + bola de discoteca sobre la pista de baile para un momento de primer baile cálido y brillante">Sparkle/pinspot light wash + disco ball over the dance floor for a warm, glittery first-dance moment</li>
+          <li data-es="Iluminación ascendente (uplighting)">Uplighting</li>
+          <li data-es="Máquina de humo">Smoke machine</li>
+          <li data-es="Letrero de neón LED (lo proveerán los novios), colocado como en la referencia">LED neon sign (couple to provide), placed as in reference</li>
+          <li data-es="Flores colocadas de forma similar a la referencia — blancas / blanco roto">Flowers placed similar to reference — white / off-white</li>
+          <li data-es="Accesorios / tambores para el Zaffah">Zaffah props / drums</li>
+          <li data-es="Ambientación de lounge nocturno">Late-night lounge styling</li>
+          <li data-es="Mesas bajas y altas cerca de la pista de baile — mantener al grupo unido, no incentivar que los invitados dejen el área de baile (grupo reducido de invitados)">Low-seated &amp; high-top tables near the dance floor — keep the group together, don't encourage guests to leave the dance area (small guest count)</li>
+          <li data-es="Bengalas durante la última canción de la bailarina de danza del vientre">Sparklers during the belly dancer's last song</li>
         </ul>
         <div class="gallery">
-          <figure><img src="assets/inspo/celebration-led-sign-venue.jpg" alt="LED sign and lighting placement at the venue"><figcaption>LED sign + lighting placement at the venue — actual space, prior event</figcaption></figure>
+          <figure><img src="assets/inspo/celebration-led-sign-venue.jpg" alt="LED sign and lighting placement at the venue"><figcaption data-es="Ubicación del letrero LED + iluminación en el lugar — espacio real, evento anterior">LED sign + lighting placement at the venue — actual space, prior event</figcaption></figure>
         </div>
-        <div class="openq"><span class="tag">Open</span>LED sign wording — earlier notes say "Janan and Juan", newer notes say "J and J". Confirm exact text before ordering.</div>
+        <div class="openq"><span class="tag" data-i18n="tagOpen">Open</span><span data-es='Texto del letrero LED — las notas anteriores dicen "Janan and Juan", las más recientes dicen "J and J". Confirmar el texto exacto antes de encargarlo.'>LED sign wording — earlier notes say "Janan and Juan", newer notes say "J and J". Confirm exact text before ordering.</span></div>
         <div class="tobring">
-          <div class="tag">To Bring — Janan &amp; Juan</div>
+          <div class="tag" data-i18n="toBring">To Bring — Janan &amp; Juan</div>
           <ul>
-            <li>LED neon sign (exact wording to be confirmed)</li>
-            <li>Sparklers for the belly dancer's last song (if needed)</li>
+            <li data-es="Letrero de neón LED (texto exacto por confirmar)">LED neon sign (exact wording to be confirmed)</li>
+            <li data-es="Bengalas para la última canción de la bailarina de danza del vientre (si es necesario)">Sparklers for the belly dancer's last song (if needed)</li>
           </ul>
         </div>
       </div>
 
       <div class="block">
-        <h3>Entertainment</h3>
-        <p>Violin (into the party, 10:50 PM)<br>Contact: Dani, +34 625 85 39 17</p>
-        <p>Zaffah performers (contact to be added).<br>Belly dancer (contact to be added).<br>DJ / band for party set (contact to be added).</p>
+        <h3 data-i18n="hEntertainment">Entertainment</h3>
+        <p><span data-es="Violín (hacia la fiesta, 10:50 PM)">Violin (into the party, 10:50 PM)</span><br><span data-i18n="contactLabel">Contact:</span> Dani, +34 625 85 39 17</p>
+        <p><span data-es="Intérpretes de Zaffah (contacto por agregar).">Zaffah performers (contact to be added).</span><br><span data-es="Bailarina de danza del vientre (contacto por agregar).">Belly dancer (contact to be added).</span><br><span data-es="DJ / banda para el set de fiesta (contacto por agregar).">DJ / band for party set (contact to be added).</span></p>
       </div>
 
       <div class="block">
-        <h3>Food &amp; Beverage</h3>
-        <ul class="plain"><li>Bar service continues</li><li>Late-night snack station</li></ul>
+        <h3 data-i18n="hFoodBeverage">Food &amp; Beverage</h3>
+        <ul class="plain"><li data-es="Continúa el servicio de bar">Bar service continues</li><li data-es="Estación de bocadillos nocturna">Late-night snack station</li></ul>
       </div>
 
       <div class="block">
-        <h3>Photography &amp; Video</h3>
+        <h3 data-i18n="hPhotoVideo">Photography &amp; Video</h3>
       </div>
 
       <div class="block">
-        <h3>Vendor Contacts</h3>
-        <div class="vendor"><div class="role">Violin</div><div class="line">Contact: Dani, +34 625 85 39 17</div></div>
-        <div class="vendor"><div class="role">DJ / Band</div><div class="line">Contact: —</div></div>
-        <div class="vendor"><div class="role">Belly Dancer</div><div class="line">Contact: —</div></div>
-        <div class="vendor"><div class="role">Fireworks</div><div class="line">Contact: —</div></div>
+        <h3 data-i18n="hVendorContacts">Vendor Contacts</h3>
+        <div class="vendor"><div class="role" data-es="Violín">Violin</div><div class="line"><span data-i18n="contactLabel">Contact:</span> Dani, +34 625 85 39 17</div></div>
+        <div class="vendor"><div class="role" data-es="DJ / Banda">DJ / Band</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
+        <div class="vendor"><div class="role" data-es="Bailarina de Danza del Vientre">Belly Dancer</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
+        <div class="vendor"><div class="role" data-es="Fuegos Artificiales">Fireworks</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
       </div>
 
       <div class="block">
-        <h3>Production Checklist</h3>
+        <h3 data-i18n="hProductionChecklist">Production Checklist</h3>
         <ul class="checklist" data-group="celebration">
-          <li data-id="dance-floor-cleared"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Dance floor cleared</span></li>
-          <li data-id="zaffah-cued"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Zaffah cued</span></li>
-          <li data-id="party-sound-checked"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Sound checked for party set</span></li>
-          <li data-id="belly-dancer-arrived"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Belly dancer arrived</span></li>
-          <li data-id="fireworks-cleared"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Fireworks vendor on site &amp; cleared for timing</span></li>
-          <li data-id="photographer-ready-cel"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer ready</span></li>
-          <li data-id="videographer-ready-cel"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer ready</span></li>
+          <li data-id="dance-floor-cleared"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Pista de baile despejada">Dance floor cleared</span></li>
+          <li data-id="zaffah-cued"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Zaffah listo para comenzar">Zaffah cued</span></li>
+          <li data-id="party-sound-checked"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Sonido revisado para el set de fiesta">Sound checked for party set</span></li>
+          <li data-id="belly-dancer-arrived"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Bailarina de danza del vientre llegó">Belly dancer arrived</span></li>
+          <li data-id="fireworks-cleared"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Proveedor de fuegos artificiales en el lugar y confirmado el horario">Fireworks vendor on site &amp; cleared for timing</span></li>
+          <li data-id="photographer-ready-cel"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Fotógrafo listo">Photographer ready</span></li>
+          <li data-id="videographer-ready-cel"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Videógrafo listo">Videographer ready</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Notes</h3>
+        <h3 data-i18n="hNotes">Notes</h3>
         <textarea class="notes-area" data-notes="celebration" placeholder="Add notes for this section..."></textarea>
-        <div class="save-hint">Autosaves as you type</div>
+        <div class="save-hint" data-i18n="autosave">Autosaves as you type</div>
       </div>
       </div>
     </section>
@@ -1278,37 +1292,37 @@
     <!-- ============ RETURN TRANSPORTATION ============ -->
     <section class="page" id="return">
       <div class="section-head">
-        <h2>Return Transportation</h2>
+        <h2 data-es="Transporte de Regreso">Return Transportation</h2>
         <div class="time">12:00 AM – 3:00 AM</div>
       </div>
 
       <div class="page-body">
       <div class="block">
-        <h3>Timeline</h3>
-        <div class="timeline-row"><div class="t">12:00 AM</div><div class="e">First departure</div></div>
-        <div class="timeline-row"><div class="t">3:00 AM</div><div class="e">Final departure</div></div>
+        <h3 data-i18n="hTimeline">Timeline</h3>
+        <div class="timeline-row"><div class="t">12:00 AM</div><div class="e" data-es="Primera salida">First departure</div></div>
+        <div class="timeline-row"><div class="t">3:00 AM</div><div class="e" data-es="Última salida">Final departure</div></div>
       </div>
 
       <div class="block">
-        <h3>Vendor Contacts</h3>
-        <div class="vendor"><div class="role">Transportation Company</div><div class="line">Contact: —</div></div>
+        <h3 data-i18n="hVendorContacts">Vendor Contacts</h3>
+        <div class="vendor"><div class="role" data-es="Empresa de Transporte">Transportation Company</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
       </div>
 
       <div class="block">
-        <h3>Production Checklist</h3>
+        <h3 data-i18n="hProductionChecklist">Production Checklist</h3>
         <ul class="checklist" data-group="return">
-          <li data-id="drivers-confirmed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Drivers confirmed</span></li>
-          <li data-id="departure-announced"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Departure times announced to guests</span></li>
-          <li data-id="signage-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Signage placed at pickup point</span></li>
-          <li data-id="coordinator-stationed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Coordinator stationed at loading area</span></li>
-          <li data-id="final-headcount"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Final headcount confirmed</span></li>
+          <li data-id="drivers-confirmed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Conductores confirmados">Drivers confirmed</span></li>
+          <li data-id="departure-announced"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Horarios de salida anunciados a los invitados">Departure times announced to guests</span></li>
+          <li data-id="signage-placed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Señalización colocada en el punto de recogida">Signage placed at pickup point</span></li>
+          <li data-id="coordinator-stationed"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Coordinación presente en el área de carga">Coordinator stationed at loading area</span></li>
+          <li data-id="final-headcount"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Conteo final de invitados confirmado">Final headcount confirmed</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Notes</h3>
+        <h3 data-i18n="hNotes">Notes</h3>
         <textarea class="notes-area" data-notes="return" placeholder="Add notes for this section..."></textarea>
-        <div class="save-hint">Autosaves as you type</div>
+        <div class="save-hint" data-i18n="autosave">Autosaves as you type</div>
       </div>
       </div>
     </section>
@@ -1316,37 +1330,37 @@
     <!-- ============ CONTACT INFORMATION ============ -->
     <section class="page" id="contacts">
       <div class="section-head">
-        <h2>Contact Information</h2>
-        <div class="time">Every vendor, at a glance</div>
+        <h2 data-i18n="navContacts">Contact Information</h2>
+        <div class="time" data-es="Todos los proveedores, de un vistazo">Every vendor, at a glance</div>
       </div>
 
       <div class="page-body">
       <div class="block">
-        <h3>Entertainment</h3>
-        <div class="vendor"><div class="role">Violin &amp; Cello</div><div class="line">Contact: Dani, +34 625 85 39 17</div><div class="line">Welcome Reception, Ceremony &amp; Celebration (into the party)</div></div>
-        <div class="vendor"><div class="role">Madrid Flamenco</div><div class="line">Contact: +34 690 38 64 49</div><div class="line">Cocktail Hour</div></div>
-        <div class="vendor"><div class="role">Zaffah Performers</div><div class="line">Contact: —</div><div class="line">Celebration</div></div>
-        <div class="vendor"><div class="role">Belly Dancer</div><div class="line">Contact: —</div><div class="line">Celebration</div></div>
-        <div class="vendor"><div class="role">DJ / Band</div><div class="line">Contact: —</div><div class="line">Celebration</div></div>
-        <div class="vendor"><div class="role">Fireworks</div><div class="line">Contact: —</div><div class="line">Celebration (to be confirmed)</div></div>
+        <h3 data-i18n="hEntertainment">Entertainment</h3>
+        <div class="vendor"><div class="role" data-es="Violín y Violonchelo">Violin &amp; Cello</div><div class="line"><span data-i18n="contactLabel">Contact:</span> Dani, +34 625 85 39 17</div><div class="line" data-es="Recepción de Bienvenida, Ceremonia y Celebración (hacia la fiesta)">Welcome Reception, Ceremony &amp; Celebration (into the party)</div></div>
+        <div class="vendor"><div class="role">Madrid Flamenco</div><div class="line"><span data-i18n="contactLabel">Contact:</span> +34 690 38 64 49</div><div class="line" data-i18n="navCocktail">Cocktail Hour</div></div>
+        <div class="vendor"><div class="role" data-es="Intérpretes de Zaffah">Zaffah Performers</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div><div class="line" data-i18n="navCelebration">Celebration</div></div>
+        <div class="vendor"><div class="role" data-es="Bailarina de Danza del Vientre">Belly Dancer</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div><div class="line" data-i18n="navCelebration">Celebration</div></div>
+        <div class="vendor"><div class="role" data-es="DJ / Banda">DJ / Band</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div><div class="line" data-i18n="navCelebration">Celebration</div></div>
+        <div class="vendor"><div class="role" data-es="Fuegos Artificiales">Fireworks</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div><div class="line" data-es="Celebración (por confirmar)">Celebration (to be confirmed)</div></div>
       </div>
 
       <div class="block">
-        <h3>Dinner &amp; Production</h3>
-        <div class="vendor"><div class="role">Catering</div><div class="line">Contact: —</div></div>
-        <div class="vendor"><div class="role">Coordinator</div><div class="line">Contact: —</div></div>
-        <div class="vendor"><div class="role">Planner</div><div class="line">Contact: —</div></div>
+        <h3 data-es="Cena y Producción">Dinner &amp; Production</h3>
+        <div class="vendor"><div class="role" data-es="Banquetes">Catering</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
+        <div class="vendor"><div class="role" data-es="Coordinación">Coordinator</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
+        <div class="vendor"><div class="role" data-es="Planificación">Planner</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div></div>
       </div>
 
       <div class="block">
-        <h3>Transportation</h3>
-        <div class="vendor"><div class="role">Transportation Company</div><div class="line">Contact: —</div><div class="line">Return, 12:00 AM – 3:00 AM</div></div>
+        <h3 data-es="Transporte">Transportation</h3>
+        <div class="vendor"><div class="role" data-es="Empresa de Transporte">Transportation Company</div><div class="line"><span data-i18n="contactLabel">Contact:</span> —</div><div class="line" data-es="Regreso, 12:00 AM – 3:00 AM">Return, 12:00 AM – 3:00 AM</div></div>
       </div>
 
       <div class="block">
-        <h3>Notes</h3>
+        <h3 data-i18n="hNotes">Notes</h3>
         <textarea class="notes-area" data-notes="contacts" placeholder="Add notes for this section..."></textarea>
-        <div class="save-hint">Autosaves as you type</div>
+        <div class="save-hint" data-i18n="autosave">Autosaves as you type</div>
       </div>
       </div>
     </section>
@@ -1354,67 +1368,67 @@
     <!-- ============ J&J TO-DO ============ -->
     <section class="page" id="todo">
       <div class="section-head">
-        <h2>J&amp;J To-Do</h2>
-        <div class="time">Janan &amp; Juan's task list</div>
+        <h2 data-i18n="navTodo">J&amp;J To-Do</h2>
+        <div class="time" data-es="Lista de tareas de Janan y Juan">Janan &amp; Juan's task list</div>
       </div>
 
       <div class="page-body">
       <div class="block">
-        <h3>Secure the Following Items</h3>
+        <h3 data-es="Asegurar los Siguientes Elementos">Secure the Following Items</h3>
         <ul class="checklist" data-group="todo-secure">
-          <li data-id="transport"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Transport</span></li>
-          <li data-id="violin-players"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Violin players</span></li>
-          <li data-id="flamenco-band"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Flamenco band</span></li>
-          <li data-id="photographer"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Photographer</span></li>
-          <li data-id="videographer"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Videographer</span></li>
+          <li data-id="transport"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Transporte">Transport</span></li>
+          <li data-id="violin-players"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Violinistas">Violin players</span></li>
+          <li data-id="flamenco-band"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Banda de flamenco">Flamenco band</span></li>
+          <li data-id="photographer"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Fotógrafo">Photographer</span></li>
+          <li data-id="videographer"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Videógrafo">Videographer</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Flower Items</h3>
+        <h3 data-es="Elementos Florales">Flower Items</h3>
         <ul class="checklist" data-group="todo-flowers">
-          <li data-id="bouquet"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Bouquet</span></li>
-          <li data-id="ceremony-aisle"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Ceremony aisle</span></li>
-          <li data-id="ceremony-flower-towers"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Ceremony flower "towers"</span></li>
-          <li data-id="dinner-menu-flower"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Dinner menu flower</span></li>
-          <li data-id="cocktail-dinner-arrangement"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Simple flower arrangement — cocktail hour &amp; dinner tables</span></li>
-          <li data-id="dinner-candle-arrangements"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Dinner table candle arrangements</span></li>
-          <li data-id="welcome-mirror-lemonade"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Flower &amp; welcome mirror + lemonade stand</span></li>
-          <li data-id="seating-chart-mirror-flowers"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Flower mirror for table seating chart</span></li>
+          <li data-id="bouquet"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Ramo">Bouquet</span></li>
+          <li data-id="ceremony-aisle"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Pasillo de la ceremonia">Ceremony aisle</span></li>
+          <li data-id="ceremony-flower-towers"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es='"Torres" florales de la ceremonia'>Ceremony flower "towers"</span></li>
+          <li data-id="dinner-menu-flower"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Flor del menú de la cena">Dinner menu flower</span></li>
+          <li data-id="cocktail-dinner-arrangement"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Arreglo floral sencillo — mesas de cóctel y cena">Simple flower arrangement — cocktail hour &amp; dinner tables</span></li>
+          <li data-id="dinner-candle-arrangements"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Arreglos de velas para las mesas de cena">Dinner table candle arrangements</span></li>
+          <li data-id="welcome-mirror-lemonade"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Flores para el espejo de bienvenida + puesto de limonada">Flower &amp; welcome mirror + lemonade stand</span></li>
+          <li data-id="seating-chart-mirror-flowers"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Espejo floral para el plano de mesas">Flower mirror for table seating chart</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>J&amp;J Will Provide</h3>
+        <h3 data-es="J&amp;J Proveerán">J&amp;J Will Provide</h3>
         <ul class="checklist" data-group="todo-provide">
-          <li data-id="umbrellas"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Umbrellas</span></li>
-          <li data-id="electric-fans"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Electric fans</span></li>
-          <li data-id="white-napkins"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">White napkins</span></li>
-          <li data-id="car-for-amino"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Car for Amino</span></li>
-          <li data-id="name-tags"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Name tags for dinner tables</span></li>
-          <li data-id="cake"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Cake</span></li>
+          <li data-id="umbrellas"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Sombrillas">Umbrellas</span></li>
+          <li data-id="electric-fans"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Abanicos eléctricos">Electric fans</span></li>
+          <li data-id="white-napkins"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Servilletas blancas">White napkins</span></li>
+          <li data-id="car-for-amino"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Auto para Amino">Car for Amino</span></li>
+          <li data-id="name-tags"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Tarjetas con nombre para las mesas de cena">Name tags for dinner tables</span></li>
+          <li data-id="cake"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Pastel">Cake</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>DJ / Reception</h3>
+        <h3 data-es="DJ / Recepción">DJ / Reception</h3>
         <ul class="checklist" data-group="todo-dj">
-          <li data-id="smoke-machine"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Smoke machine</span></li>
-          <li data-id="neon-sign"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Neon sign</span></li>
-          <li data-id="disco-ball-lighting"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Disco ball + lighting</span></li>
-          <li data-id="sparklers-belly-dancer"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label">Sparklers for the belly dancer event</span></li>
+          <li data-id="smoke-machine"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Máquina de humo">Smoke machine</span></li>
+          <li data-id="neon-sign"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Letrero de neón">Neon sign</span></li>
+          <li data-id="disco-ball-lighting"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Bola de discoteca + iluminación">Disco ball + lighting</span></li>
+          <li data-id="sparklers-belly-dancer"><span class="box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="#f6f1e7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="label" data-es="Bengalas para el momento de la bailarina de danza del vientre">Sparklers for the belly dancer event</span></li>
         </ul>
       </div>
 
       <div class="block">
-        <h3>Notes</h3>
+        <h3 data-i18n="hNotes">Notes</h3>
         <textarea class="notes-area" data-notes="todo" placeholder="Add notes for this section..."></textarea>
-        <div class="save-hint">Autosaves as you type</div>
+        <div class="save-hint" data-i18n="autosave">Autosaves as you type</div>
       </div>
       </div>
     </section>
 
-    <div class="footer">Janan &amp; Juan · Wedding Production Book · 08 . 28 . 26</div>
+    <div class="footer">Janan &amp; Juan · <span data-i18n="doctitle">Wedding Production Book</span> · 08 . 28 . 26</div>
 
   </div>
 
@@ -1440,7 +1454,7 @@
       try{ sessionStorage.setItem('jjw-auth', 'true'); }catch(e){}
       unlock();
     } else {
-      error.textContent = 'Incorrect password.';
+      error.textContent = (window.currentLang === 'es') ? 'Contraseña incorrecta.' : 'Incorrect password.';
       input.value = '';
       input.focus();
     }
@@ -1587,6 +1601,82 @@
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape'){ closeLightbox(); }
   });
+
+  // ---- Language toggle (EN / ES) ----
+  // Repeated UI chrome (nav labels, block headings, tag words, field
+  // labels) lives in this dictionary and is applied via [data-i18n].
+  // One-off content (list items, captions, checklist labels, etc.) is
+  // translated inline via a data-es attribute on the element itself.
+  var I18N = {
+    doctitle: {en:"Wedding Production Book", es:"Libro de Producción de la Boda"},
+    gateSub: {en:"This page is private. Enter the password to continue.", es:"Esta página es privada. Ingresa la contraseña para continuar."},
+    gateEnter: {en:"Enter", es:"Entrar"},
+    navOverview: {en:"Overview", es:"Resumen"},
+    navAgenda: {en:"Agenda", es:"Agenda"},
+    navVisual: {en:"Visual Expectations", es:"Expectativas Visuales"},
+    navEvents: {en:"Events", es:"Eventos"},
+    navWelcome: {en:"Welcome Reception", es:"Recepción de Bienvenida"},
+    navCeremony: {en:"Ceremony", es:"Ceremonia"},
+    navCocktail: {en:"Cocktail Hour", es:"Hora del Cóctel"},
+    navDinner: {en:"Dinner", es:"Cena"},
+    navCelebration: {en:"Celebration", es:"Celebración"},
+    navReturn: {en:"Return", es:"Regreso"},
+    navContacts: {en:"Contact Information", es:"Información de Contacto"},
+    navTodo: {en:"J&J To-Do", es:"Lista de Tareas J&J"},
+    hGuestExperience: {en:"Guest Experience", es:"Experiencia de los Invitados"},
+    hTimeline: {en:"Timeline", es:"Cronología"},
+    hDesignDecor: {en:"Design & Décor", es:"Diseño y Decoración"},
+    hEntertainment: {en:"Entertainment", es:"Entretenimiento"},
+    hFoodBeverage: {en:"Food & Beverage", es:"Comida y Bebida"},
+    hPhotoVideo: {en:"Photography & Video", es:"Fotografía y Video"},
+    hVendorContacts: {en:"Vendor Contacts", es:"Contactos de Proveedores"},
+    hProductionChecklist: {en:"Production Checklist", es:"Lista de Producción"},
+    hNotes: {en:"Notes", es:"Notas"},
+    toBring: {en:"To Bring — Janan & Juan", es:"Por Traer — Janan y Juan"},
+    tagOpen: {en:"Open", es:"Pendiente"},
+    tagNotes: {en:"Notes", es:"Notas"},
+    contactLabel: {en:"Contact:", es:"Contacto:"},
+    arrivalLabel: {en:"Arrival Time:", es:"Hora de llegada:"},
+    autosave: {en:"Autosaves as you type", es:"Se guarda automáticamente mientras escribes"}
+  };
+
+  var NOTES_PLACEHOLDER = {en:"Add notes for this section...", es:"Agrega notas para esta sección..."};
+  var PASSWORD_PLACEHOLDER = {en:"Password", es:"Contraseña"};
+
+  window.currentLang = 'en';
+  var langEnBtn = document.getElementById('langEn');
+  var langEsBtn = document.getElementById('langEs');
+
+  function applyLang(lang){
+    window.currentLang = lang;
+    document.documentElement.lang = lang;
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var entry = I18N[el.dataset.i18n];
+      if(entry && entry[lang]) el.textContent = entry[lang];
+    });
+
+    document.querySelectorAll('[data-es]').forEach(function(el){
+      if(el.dataset.en === undefined){ el.dataset.en = el.textContent; }
+      el.textContent = lang === 'es' ? el.dataset.es : el.dataset.en;
+    });
+
+    document.querySelectorAll('.notes-area').forEach(function(el){
+      el.placeholder = NOTES_PLACEHOLDER[lang];
+    });
+    input.placeholder = PASSWORD_PLACEHOLDER[lang];
+
+    langEnBtn.classList.toggle('active', lang === 'en');
+    langEsBtn.classList.toggle('active', lang === 'es');
+    try{ localStorage.setItem('site-lang', lang); }catch(e){}
+  }
+
+  langEnBtn.addEventListener('click', function(){ applyLang('en'); });
+  langEsBtn.addEventListener('click', function(){ applyLang('es'); });
+
+  var savedLang = 'en';
+  try{ savedLang = localStorage.getItem('site-lang') || 'en'; }catch(e){}
+  applyLang(savedLang);
 })();
 </script>
 
